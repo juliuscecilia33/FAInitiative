@@ -82,12 +82,20 @@ const login = async (req: Request, res: Response) => {
 
 const me = async (req: Request, res: Response) => {
   try {
-    console.log(req.cookies);
+    const token = req.cookies.token;
 
-    return res.json({ message: "testing" });
+    if (!token) throw new Error("Unauthenticated");
+
+    const { username }: any = jwt.verify(token, process.env.JWT_SECRET);
+
+    const user = await User.findOne({ username });
+
+    if (!user) throw new Error("Unauthenticated");
+
+    return res.json(user);
   } catch (err) {
     console.log(err);
-    return res.status(401).json({ errors: "Unauthenticated" });
+    return res.status(401).json({ error: err.message });
   }
 };
 

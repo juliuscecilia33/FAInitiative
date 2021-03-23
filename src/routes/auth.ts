@@ -1,4 +1,5 @@
 import { Request, Response, Router } from "express";
+import { validate } from "class-validator";
 
 import { User } from "../entities/User";
 
@@ -10,6 +11,11 @@ const register = async (req: Request, res: Response) => {
 
     // Todo: Create the User
     const user = new User({ email, username, password });
+
+    const errors = await validate(user);
+
+    if (errors.length > 0) return res.status(400).json({ errors });
+
     await user.save();
 
     // Todo: Return the user

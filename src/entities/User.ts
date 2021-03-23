@@ -5,6 +5,7 @@ import { UpdateDateColumn } from "typeorm";
 import { Index } from "typeorm";
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import bcrypt from "bcrypt";
+import { classToPlain, Exclude } from "class-transformer";
 
 @Entity("users")
 export class User extends BaseEntity {
@@ -13,6 +14,7 @@ export class User extends BaseEntity {
     Object.assign(this, user);
   }
 
+  @Exclude()
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,6 +28,7 @@ export class User extends BaseEntity {
   @Column({ unique: true })
   username: string;
 
+  @Exclude()
   @Column()
   @Length(6, 255)
   password: string;
@@ -39,5 +42,9 @@ export class User extends BaseEntity {
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 6);
+  }
+
+  toJSON() {
+    return classToPlain(this);
   }
 }

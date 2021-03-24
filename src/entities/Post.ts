@@ -1,28 +1,33 @@
-import { CreateDateColumn } from "typeorm";
+import { IsEmail, Length } from "class-validator";
 import { BeforeInsert } from "typeorm";
-import { UpdateDateColumn } from "typeorm";
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Index } from "typeorm";
+import { Entity as TOEntity, Column } from "typeorm";
 import bcrypt from "bcrypt";
-import { classToPlain, Exclude } from "class-transformer";
+import { Exclude } from "class-transformer";
 
-@Entity()
-export class Post extends BaseEntity {
-  @Exclude()
-  @PrimaryGeneratedColumn()
-  id: number;
+import Entity from "./Entity";
 
-  @CreateDateColumn()
-  createAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 6);
+@TOEntity("posts")
+export class Post extends Entity {
+  constructor(post: Partial<Post>) {
+    super();
+    Object.assign(this, post);
   }
 
-  toJSON() {
-    return classToPlain(this);
-  }
+  @Index()
+  @Column()
+  identifier: string; // 7 Character Id
+
+  @Column()
+  title: string;
+
+  @Index()
+  @Column()
+  slug: string;
+
+  @Column({ nullable: true, type: "text" })
+  body: string;
+
+  @Column()
+  subName: string;
 }

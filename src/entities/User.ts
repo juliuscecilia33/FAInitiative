@@ -1,4 +1,4 @@
-import { IsEmail, Length, Min } from "class-validator";
+import { IsEmail, Length } from "class-validator";
 import { BeforeInsert } from "typeorm";
 import { Index } from "typeorm";
 import { Entity as TOEntity, Column } from "typeorm";
@@ -8,7 +8,7 @@ import { Exclude } from "class-transformer";
 import Entity from "./Entity";
 
 @TOEntity("users")
-export class User extends Entity {
+export default class User extends Entity {
   constructor(user: Partial<User>) {
     super();
     Object.assign(this, user);

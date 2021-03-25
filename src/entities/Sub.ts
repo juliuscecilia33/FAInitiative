@@ -7,7 +7,7 @@ import { Post } from "./Post";
 import User from "./User";
 
 @TOEntity("subs")
-export class Sub extends Entity {
+export default class Sub extends Entity {
   constructor(sub: Partial<Sub>) {
     super();
     Object.assign(this, sub);

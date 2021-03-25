@@ -4,7 +4,7 @@ import { Entity as TOEntity, Column } from "typeorm";
 import { makeId, slugify } from "../util/helpers";
 
 import Entity from "./Entity";
-import { Sub } from "./Sub";
+import Sub from "./Sub";
 import User from "./User";
 
 @TOEntity("posts")

@@ -31,13 +31,25 @@ const getPosts = async (_: Request, res: Response) => {
   try {
     const posts = await Post.find({
       order: { createdAt: "DESC" },
-      relations: ["sub"],
     });
 
     return res.json(posts);
   } catch (err) {
     console.log(err);
-    return res.json({ error: "Something went wrong" });
+    return res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
+const getPost = async (req: Request, res: Response) => {
+  const { identifier, slug } = req.params;
+
+  try {
+    const post = await Post.findOneOrFail({ identifier, slug });
+
+    return res.json(post);
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json({ error: "Post not found" });
   }
 };
 
@@ -45,5 +57,6 @@ const router = Router();
 
 router.post("/", auth, createPost);
 router.get("/", getPosts);
+router.get("/:identifier/:slug", getPost);
 
 export default router;

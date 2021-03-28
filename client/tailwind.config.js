@@ -11,13 +11,14 @@ module.exports = {
       ...theme("colors"),
       primary: "#3490dc",
       secondary: "#E8F1F2",
-      danger: "#e3342f",
+      green: "#5B9279",
     }),
-    textColor: {
+    textColor: (theme) => ({
+      ...theme("colors"),
       primary: "#5B9279",
       secondary: "#001A23",
-      danger: "#e3342f",
-    },
+      minimal: "#C2C2C2",
+    }),
     height: {
       "7v": "7vh",
       "8v": "8vh",

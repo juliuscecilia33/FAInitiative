@@ -13,8 +13,11 @@ export default function Register() {
       </div>
 
       <div className="flex w-full bg-white h-93v">
-        <div className="flex flex-col items-center justify-center w-5/12 h-full bg-white">
-          <div className="flex flex-col items-center justify-center w-9/12">
+        <div className="flex flex-col items-center justify-center w-5/12 h-full py-3 bg-white">
+          <div
+            className="flex flex-col items-center justify-center w-9/12"
+            style={{ height: "100%" }}
+          >
             <p className="mb-1 text-4xl font-bold text-center font-body text-secondary">
               Sign up to
             </p>
@@ -43,6 +46,14 @@ export default function Register() {
               Already a user?{" "}
               <span className="text-sm text-primary font-body">Log in.</span>
             </p>
+          </div>
+          <div className="flex flex-wrap items-end justify-center w-11/12">
+            <img className="mb-3 mr-14" src="/images/FAOutlets.png" />
+            <img className="mb-3 mr-14" src="/images/Youtube.png" />
+            <img className="mb-3 mr-14" src="/images/LinkedIn.png" />
+            <img className="mb-3 mr-14" src="/images/Facebook.png" />
+            <img className="mb-3 mr-14" src="/images/Twitter.png" />
+            <img className="mb-3 mr-14" src="/images/Instagram.png" />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center w-7/12 h-full bg-secondary">

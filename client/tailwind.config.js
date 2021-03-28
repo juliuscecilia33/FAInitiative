@@ -1,19 +1,22 @@
-const colors = require("tailwindcss/colors");
-
 module.exports = {
   purge: ["./src/**/*.tsx"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-    colors: {
-      transparent: "transparent",
-      current: "currentColor",
-      black: colors.black,
-      white: colors.white,
-      gray: colors.trueGray,
-      indigo: colors.indigo,
-      red: colors.rose,
-      yellow: colors.amber,
+    extend: {
+      fontFamily: {
+        body: ["Roboto"],
+      },
+    },
+    backgroundColor: (theme) => ({
+      ...theme("colors"),
+      primary: "#3490dc",
+      secondary: "#E8F1F2",
+      danger: "#e3342f",
+    }),
+    textColor: {
+      primary: "#5B9279",
+      secondary: "#001A23",
+      danger: "#e3342f",
     },
     height: {
       "7v": "7vh",

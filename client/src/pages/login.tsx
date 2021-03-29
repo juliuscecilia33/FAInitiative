@@ -6,10 +6,8 @@ import { useRouter } from "next/router";
 import InputGroup from "../components/InputGroup";
 
 export default function Register() {
-  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [agreement, setAgreement] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
   const router = useRouter();
@@ -18,27 +16,21 @@ export default function Register() {
     event.preventDefault();
 
     try {
-      await Axios.post("/auth/register", {
-        email,
-        password,
+      await Axios.post("/auth/login", {
         username,
+        password,
       });
 
-      router.push("/login");
+      router.push("/");
     } catch (err) {
       setErrors(err.response.data);
-    }
-
-    if (!agreement) {
-      setErrors({ ...errors, agreement: "You must agree to T&Cs" });
-      return;
     }
   };
 
   return (
     <div className="flex flex-col">
       <Head>
-        <title>Register</title>
+        <title>Login</title>
       </Head>
 
       <div className="flex items-center justify-center w-full bg-white border-b h-7v border-primary">
@@ -57,21 +49,14 @@ export default function Register() {
               style={{ height: "100%" }}
             >
               <p className="mb-1 text-4xl font-bold text-center font-body text-secondary">
-                Sign up to
+                Log in to
               </p>
               <p className="mb-3 text-5xl font-bold text-center font-body text-primary">
                 Food Allergy Initiative
               </p>
               <p className="w-4/12 mb-8 text-sm text-center text-minimal font-body">
-                By signing up, you agree to our terms and conditions.
+                By signing in, you agree to our terms and conditions.
               </p>
-              <InputGroup
-                value={email}
-                setValue={setEmail}
-                placeholder="Email"
-                error={errors.email}
-                type="email"
-              />
               <InputGroup
                 value={username}
                 setValue={setUsername}
@@ -86,31 +71,13 @@ export default function Register() {
                 error={errors.password}
                 type="password"
               />
-              <div className="flex items-center justify-center mb-8">
-                <input
-                  type="checkbox"
-                  className="mr-1 cursor-pointer"
-                  id="agreement"
-                  checked={agreement}
-                  onChange={(e) => setAgreement(e.target.checked)}
-                />
-                <label
-                  htmlFor="agreement"
-                  className="text-xs cursor-pointer font-body"
-                >
-                  I agree to get emails about FA Initiative
-                </label>
-                <small className="block font-medium text-red-600">
-                  {errors.agreement}
-                </small>
-              </div>
               <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none bg-green font-body">
-                Sign up
+                Log in
               </button>
               <p className="text-sm text-secondary font-body">
-                Already a user?{" "}
-                <Link href="/login">
-                  <a className="text-sm text-primary font-body">Log in.</a>
+                Not a user?{" "}
+                <Link href="/register">
+                  <a className="text-sm text-primary font-body">Sign up.</a>
                 </Link>
               </p>
             </div>

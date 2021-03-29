@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Axios from "axios";
 import { useRouter } from "next/router";
+import InputGroup from "../components/InputGroup";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,29 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [agreement, setAgreement] = useState(false);
   const [errors, setErrors] = useState<any>({});
+
+  const router = useRouter();
+
+  const submitForm = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (!agreement) {
+      setErrors({ ...errors, agreement: "You must agree to T&Cs" });
+      return;
+    }
+
+    try {
+      await Axios.post("/auth/register", {
+        email,
+        password,
+        username,
+      });
+
+      router.push("/login");
+    } catch (err) {
+      setErrors(err.response.data);
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -41,17 +65,26 @@ export default function Register() {
               <p className="w-4/12 mb-8 text-sm text-center text-minimal font-body">
                 By signing up, you agree to our terms and conditions.
               </p>
-              <input
+              <InputGroup
+                value={email}
+                setValue={setEmail}
                 placeholder="Email"
-                className="w-11/12 px-6 py-3 border rounded-full outline-none mb-14 bg-secondary font-body"
+                error={errors.email}
+                type="email"
               />
-              <input
+              <InputGroup
+                value={username}
+                setValue={setUsername}
                 placeholder="Username"
-                className="w-11/12 px-6 py-3 border rounded-full outline-none mb-14 bg-secondary font-body"
+                error={errors.Username}
+                type="text"
               />
-              <input
+              <InputGroup
+                value={password}
+                setValue={setPassword}
                 placeholder="Password"
-                className="w-11/12 px-6 py-3 border rounded-full outline-none mb-14 bg-secondary font-body"
+                error={errors.password}
+                type="password"
               />
               <div className="flex items-center justify-center mb-8">
                 <input

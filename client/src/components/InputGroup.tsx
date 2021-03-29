@@ -1,7 +1,6 @@
 import classNames from "classnames";
 
 interface InputGroupProps {
-  className?: string;
   type: string;
   placeholder: string;
   value: string;
@@ -10,7 +9,6 @@ interface InputGroupProps {
 }
 
 const InputGroup: React.FC<InputGroupProps> = ({
-  className,
   type,
   placeholder,
   value,
@@ -19,8 +17,14 @@ const InputGroup: React.FC<InputGroupProps> = ({
 }) => {
   return (
     <input
-      placeholder="Email"
-      className="w-11/12 px-6 py-3 border rounded-full outline-none mb-14 bg-secondary font-body"
+      type={type}
+      placeholder={placeholder}
+      className={classNames(
+        "transition duration-200 w-11/12 px-6 py-3 border rounded-full outline-none mb-14 bg-secondary font-body",
+        { "border-red-500": error }
+      )}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 };

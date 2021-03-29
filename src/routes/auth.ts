@@ -7,13 +7,19 @@ import cookie from "cookie";
 import User from "../entities/User";
 import auth from "../middleware/auth";
 
+const mapErrors = (errors: Object[]) => {
+  return errors.reduce((prev: any, err: any) => {
+    prev[err.property] = Object.entries(err.constraints)[0][1];
+    return prev;
+  }, {});
+};
+
 const register = async (req: Request, res: Response) => {
   const { email, username, password } = req.body;
 
   try {
-    // Todo: Validate Data
+    // Validate data
     let errors: any = {};
-
     const emailUser = await User.findOne({ email });
     const usernameUser = await User.findOne({ username });
 
@@ -24,16 +30,17 @@ const register = async (req: Request, res: Response) => {
       return res.status(400).json(errors);
     }
 
-    // Todo: Create the User
+    // Create the user
     const user = new User({ email, username, password });
 
     errors = await validate(user);
-
-    if (errors.length > 0) return res.status(400).json({ errors });
+    if (errors.length > 0) {
+      return res.status(400).json(mapErrors(errors));
+    }
 
     await user.save();
 
-    // Todo: Return the user
+    // Return the user
     return res.json(user);
   } catch (err) {
     console.log(err);
@@ -49,14 +56,13 @@ const login = async (req: Request, res: Response) => {
 
     if (isEmpty(username)) errors.username = "Username must not be empty";
     if (isEmpty(password)) errors.password = "Password must not be empty";
-
     if (Object.keys(errors).length > 0) {
       return res.status(400).json(errors);
     }
 
     const user = await User.findOne({ username });
 
-    if (!user) return res.status(404).json({ error: "User not found" });
+    if (!user) return res.status(404).json({ username: "User not found" });
 
     const passwordMatches = await bcrypt.compare(password, user.password);
 

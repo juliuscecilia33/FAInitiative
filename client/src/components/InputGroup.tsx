@@ -16,16 +16,19 @@ const InputGroup: React.FC<InputGroupProps> = ({
   setValue,
 }) => {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={classNames(
-        "transition duration-200 w-11/12 px-6 py-3 border rounded-full outline-none mb-14 bg-secondary font-body focus:bg-white hover:bg-white",
-        { "border-red-500": error }
-      )}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <div className="w-11/12 mb-12">
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={classNames(
+          "mb-1 transition duration-200 w-full px-6 py-3 border rounded-full outline-none bg-secondary font-body focus:bg-white hover:bg-white",
+          { "border-red-500": error }
+        )}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <small className="font-medium text-red-600">{error}</small>
+    </div>
   );
 };
 

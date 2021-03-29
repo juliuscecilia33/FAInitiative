@@ -17,11 +17,6 @@ export default function Register() {
   const submitForm = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (!agreement) {
-      setErrors({ ...errors, agreement: "You must agree to T&Cs" });
-      return;
-    }
-
     try {
       await Axios.post("/auth/register", {
         email,
@@ -32,6 +27,11 @@ export default function Register() {
       router.push("/login");
     } catch (err) {
       setErrors(err.response.data);
+    }
+
+    if (!agreement) {
+      setErrors({ ...errors, agreement: "You must agree to T&Cs" });
+      return;
     }
   };
 
@@ -51,6 +51,7 @@ export default function Register() {
           <form
             className="flex flex-col items-center justify-center w-full"
             style={{ height: "100%" }}
+            onSubmit={submitForm}
           >
             <div
               className="flex flex-col items-center justify-center w-9/12"
@@ -76,7 +77,7 @@ export default function Register() {
                 value={username}
                 setValue={setUsername}
                 placeholder="Username"
-                error={errors.Username}
+                error={errors.username}
                 type="text"
               />
               <InputGroup

@@ -6,6 +6,29 @@ module.exports = {
       fontFamily: {
         body: ["Roboto"],
       },
+      padding: {
+        vh: "8vh",
+      },
+      width: {
+        "1/18": "5.555555555%",
+        "17/18": "9.4444444444%",
+      },
+      height: {
+        "7v": "7vh",
+        "8v": "8vh",
+        "9v": "9vh",
+        "20v": "20vh",
+        "30v": "30vh",
+        "40v": "40vh",
+        "50v": "50vh",
+        "60v": "60vh",
+        "70v": "70vh",
+        "80v": "80vh",
+        "90v": "90vh",
+        "92v": "92vh",
+        "93v": "93vh",
+        "100v": "100vh",
+      },
     },
     backgroundColor: (theme) => ({
       ...theme("colors"),
@@ -20,21 +43,7 @@ module.exports = {
       minimal: "#C2C2C2",
       green: "#5B9279",
     }),
-    height: {
-      "7v": "7vh",
-      "8v": "8vh",
-      "9v": "9vh",
-      "20v": "20vh",
-      "30v": "30vh",
-      "40v": "40vh",
-      "50v": "50vh",
-      "60v": "60vh",
-      "70v": "70vh",
-      "80v": "80vh",
-      "90v": "90vh",
-      "93v": "93vh",
-      "100v": "100vh",
-    },
+
     borderColor: (theme) => ({
       ...theme("colors"),
       DEFAULT: theme("colors.gray.300", "currentColor"),

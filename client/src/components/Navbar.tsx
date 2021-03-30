@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Navbar: React.FC = () => (
-  <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-between w-full px-8 bg-transparent border-b-2 h-8v border-primary">
+  <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-between w-full px-8 bg-transparent border-b h-8v border-primary">
     <img className="h-auto" src="/images/Logo.png" />
     <div className="flex items-center w-3/12 px-5 mx-auto border rounded-full bg-secondary font-body focus:bg-white hover:bg-white">
       <i className="mr-3 text-gray-400 fas fa-search"></i>

@@ -42,7 +42,9 @@ export default function Register() {
       </Head>
 
       <div className="flex items-center justify-center w-full bg-white border-b h-7v border-primary">
-        <img className="h-auto" src="/images/Logo.png" />
+        <Link href="/">
+          <img className="h-auto cursor-pointer" src="/images/Logo.png" />
+        </Link>
       </div>
 
       <div className="flex w-full bg-white h-93v">
@@ -104,7 +106,7 @@ export default function Register() {
                   {errors.agreement}
                 </small>
               </div>
-              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none bg-green font-body">
+              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none focus:outline-none bg-green font-body">
                 Sign up
               </button>
               <p className="text-sm text-secondary font-body">

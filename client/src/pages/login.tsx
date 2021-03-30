@@ -34,7 +34,9 @@ export default function Register() {
       </Head>
 
       <div className="flex items-center justify-center w-full bg-white border-b h-7v border-primary">
-        <img className="h-auto" src="/images/Logo.png" />
+        <Link href="/">
+          <img className="h-auto cursor-pointer" src="/images/Logo.png" />
+        </Link>
       </div>
 
       <div className="flex w-full bg-white h-93v">

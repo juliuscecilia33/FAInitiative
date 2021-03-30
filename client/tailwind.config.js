@@ -18,6 +18,7 @@ module.exports = {
       primary: "#5B9279",
       secondary: "#001A23",
       minimal: "#C2C2C2",
+      green: "#5B9279",
     }),
     height: {
       "7v": "7vh",
@@ -38,9 +39,18 @@ module.exports = {
       ...theme("colors"),
       DEFAULT: theme("colors.gray.300", "currentColor"),
       primary: "#E8F1F2",
-      secondary: "#ffed4a",
+      green: "#5B9279",
       danger: "#e3342f",
     }),
+    borderWidth: {
+      DEFAULT: "1px",
+      0: "0",
+      2: "2px",
+      3: "3px",
+      4: "4px",
+      6: "6px",
+      8: "8px",
+    },
   },
   variants: {
     extend: {},

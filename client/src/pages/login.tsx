@@ -38,6 +38,18 @@ export default function Register() {
       </div>
 
       <div className="flex w-full bg-white h-93v">
+        <div className="flex flex-col items-center justify-center w-7/12 h-full bg-secondary">
+          <img className="w-10/12 h-auto m-2" src="/images/Page3.png" />
+          <div className="flex flex-col items-center justify-center w-8/12 mb-6">
+            <p className="text-3xl text-primary m-3.5 font-bold text-center font-body">
+              Share your own story or post new discoveries
+            </p>
+            <p className="w-7/12 text-base text-center font-body text-secondary">
+              Be able to share your own experiences or post new discoveries
+              where other can find you through their feed or assemblies.
+            </p>
+          </div>
+        </div>
         <div className="flex flex-col items-center justify-center w-5/12 h-full py-3 bg-white">
           <form
             className="flex flex-col items-center justify-center w-full"
@@ -90,20 +102,6 @@ export default function Register() {
               <img className="mb-3 mr-14" src="/images/Instagram.png" />
             </div>
           </form>
-        </div>
-
-        <div className="flex flex-col items-center justify-center w-7/12 h-full bg-secondary">
-          <img className="w-10/12 h-auto m-2" src="/images/Page1.png" />
-          <div className="flex flex-col items-center justify-center w-8/12 mb-6">
-            <p className="text-3xl text-primary m-3.5 font-bold text-center font-body">
-              Find or create assemblies to meet other people
-            </p>
-            <p className="w-7/12 text-base text-center font-body text-secondary">
-              Check out assemblies that each discuss their own topic such as
-              experiences, recipes, foods, stores, and more. You can also create
-              your assembly and have other people join it!
-            </p>
-          </div>
         </div>
       </div>
     </div>

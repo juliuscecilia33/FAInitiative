@@ -8,7 +8,13 @@ export default function Home() {
       <Head>
         <title>FA Intiative</title>
       </Head>
-      <Sidebar />
+      <div className="flex w-full h-92v">
+        <Sidebar />
+
+        <div className="flex justify-center w-full h-full bg-transparent pl-1/18">
+          <p>hello</p>
+        </div>
+      </div>
     </div>
   );
 }

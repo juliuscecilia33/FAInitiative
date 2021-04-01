@@ -6,6 +6,10 @@ module.exports = {
       fontFamily: {
         body: ["Roboto"],
       },
+      fontSize: {
+        xs2: ".45rem",
+        xs: ".75rem",
+      },
       padding: {
         vh: "8vh",
         "1/18": "5.555555555%",
@@ -29,6 +33,12 @@ module.exports = {
         "92v": "92vh",
         "93v": "93vh",
         "100v": "100vh",
+        "1/7": "14.285714285%",
+        "2/7": "28.571428571%",
+        "4/7": "57.142857142%",
+      },
+      borderRadius: {
+        "4xl": "3rem",
       },
     },
     backgroundColor: (theme) => ({

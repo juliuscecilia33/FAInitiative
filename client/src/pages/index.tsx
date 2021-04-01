@@ -12,7 +12,7 @@ export default function Home() {
         <Sidebar />
 
         <div className="flex justify-center w-full h-full pt-8 bg-transparent pl-1/18">
-          <div className="flex flex-col items-center w-6/12 h-40 bg-white shadow-2xl rounded-4xl">
+          <div className="flex flex-col items-center w-6/12 bg-white shadow-2xl h-52 rounded-tl-4xl rounded-tr-4xl rounded-bl-3.5xl rounded-br-3.5xl">
             <div className="flex items-center justify-between w-full px-10 bg-secondary h-2/7 rounded-tl-4xl rounded-tr-4xl">
               <div className="flex items-center justify-center">
                 <p className="text-base text-secondary">
@@ -32,6 +32,15 @@ export default function Home() {
                   <p className="text-sm font-semibold">5</p>
                 </div>
               </div>
+            </div>
+            <div className="flex items-center w-full h-4/7"></div>
+            <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-green h-1/7">
+              <img
+                className="w-5 h-auto mr-2"
+                src="/images/companylogo.png"
+                alt="company logo"
+              />
+              <p className="text-white">/fa/stores</p>
             </div>
           </div>
         </div>

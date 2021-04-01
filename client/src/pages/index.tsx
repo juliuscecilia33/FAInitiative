@@ -33,7 +33,23 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center w-full h-4/7"></div>
+            <div className="flex flex-col justify-between w-full px-10 py-4 h-4/7">
+              <p className="text-xl font-bold truncate text-secondary">
+                Check out Arrowhead Mills! They have so much allergy-friendly
+                foods! Arrowhead Mills has been one of America’s most trusted
+                organic baking brands for 50 years.
+              </p>
+              <div className="flex items-center">
+                <div className="flex items-center justify-center mr-5">
+                  <i className="mr-2 text-2xl fas fa-heartbeat text-green"></i>
+                  <p className="text-sm font-semibold">Love</p>
+                </div>
+                <div className="flex items-center justify-center">
+                  <i className="mr-2 text-2xl fas fa-comment-dots text-green"></i>
+                  <p className="text-sm font-semibold">Comment</p>
+                </div>
+              </div>
+            </div>
             <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-green h-1/7">
               <img
                 className="w-5 h-auto mr-2"

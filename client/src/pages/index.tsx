@@ -69,14 +69,18 @@ export default function Home() {
                   <p className="text-sm truncate text-secondary">{post.body}</p>
                 </div>
                 <div className="flex items-center">
-                  <div className="flex items-center justify-center mr-5">
+                  <div className="flex items-center justify-center px-2 mr-5 transition rounded cursor-pointer hover:bg-gray-200">
                     <i className="mr-2 text-2xl cursor-pointer fas fa-heartbeat text-green"></i>
                     <p className="text-sm font-semibold">Love</p>
                   </div>
-                  <div className="flex items-center justify-center">
-                    <i className="mr-2 text-2xl cursor-pointer fas fa-comment-dots text-green"></i>
-                    <p className="text-sm font-semibold">Comment</p>
-                  </div>
+                  <Link href={post.url}>
+                    <div className="flex items-center justify-center px-2 transition rounded cursor-pointer hover:bg-gray-200">
+                      <i className="mr-2 text-2xl cursor-pointer text-green fas fa-comment-dots"></i>
+                      <p className="text-sm font-semibold cursor-pointer">
+                        Comment
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-green h-1/7">

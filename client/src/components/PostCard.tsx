@@ -10,7 +10,7 @@ interface PostCardProps {
   post: Post;
 }
 
-export default function PostCard({ post }) {
+export default function PostCard({ post }: PostCardProps) {
   return (
     <div
       key={post.identifier}
@@ -35,12 +35,12 @@ export default function PostCard({ post }) {
         </div>
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center mx-3">
-            <i className="mr-2 text-2xl cursor-pointer fas fa-heartbeat text-green"></i>
-            <p className="text-sm font-semibold">28</p>
+            <i className="mr-2 text-2xl fas fa-heartbeat text-green"></i>
+            <p className="text-sm font-semibold">{post.voteScore}</p>
           </div>
           <div className="flex items-center justify-center mx-3">
-            <i className="mr-2 text-2xl cursor-pointer fas fa-comment-dots text-green"></i>
-            <p className="text-sm font-semibold">5</p>
+            <i className="mr-2 text-2xl fas fa-comment-dots text-green"></i>
+            <p className="text-sm font-semibold">{post.commentCount}</p>
           </div>
         </div>
       </div>
@@ -52,13 +52,13 @@ export default function PostCard({ post }) {
           <p className="text-sm truncate text-secondary">{post.body}</p>
         </div>
         <div className="flex items-center">
-          <div className="flex items-center justify-center px-2 mr-5 transition rounded cursor-pointer hover:bg-gray-200">
-            <i className="mr-2 text-2xl cursor-pointer fas fa-heartbeat text-green"></i>
+          <div className="flex items-center justify-center px-2 mr-5 text-gray-300 transition rounded cursor-pointer hover:bg-gray-200 hover:text-green">
+            <i className="mr-2 text-2xl cursor-pointer fas fa-heartbeat"></i>
             <p className="text-sm font-semibold">Love</p>
           </div>
           <Link href={post.url}>
-            <div className="flex items-center justify-center px-2 transition rounded cursor-pointer hover:bg-gray-200">
-              <i className="mr-2 text-2xl cursor-pointer text-green fas fa-comment-dots"></i>
+            <div className="flex items-center justify-center px-2 text-gray-300 transition rounded cursor-pointer hover:bg-gray-200 hover:text-green">
+              <i className="mr-2 text-2xl cursor-pointer fas fa-comment-dots"></i>
               <p className="text-sm font-semibold cursor-pointer">Comment</p>
             </div>
           </Link>

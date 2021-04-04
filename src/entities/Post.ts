@@ -1,3 +1,4 @@
+import { Exclude, Expose } from "class-transformer";
 import {
   AfterLoad,
   BeforeInsert,
@@ -53,6 +54,7 @@ export class Post extends Entity {
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
 
+  @Exclude()
   @OneToMany(() => Vote, (vote) => vote.post)
   votes: Vote[];
 
@@ -60,6 +62,14 @@ export class Post extends Entity {
   @AfterLoad()
   createFields() {
     this.url = `/r/${this.subName}/${this.identifier}/${this.slug}`;
+  }
+
+  @Expose() get commentCount(): number {
+    return this.comments?.length;
+  }
+
+  @Expose() get voteScore(): number {
+    return this.votes?.reduce((prev, curr) => prev + (curr.value || 0), 0);
   }
 
   @BeforeInsert()

@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   const logout = () => {
     Axios.get("/auth/logout")
       .then(() => {
-        dispatch({ type: "LOGOUT" });
+        dispatch("LOGOUT");
         window.location.reload();
       })
       .catch((err) => console.log(err));
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
         ) : (
           <Fragment>
             <Link href="/login">
-              <button className="w-32 py-2 mr-4 font-semibold rounded-full focus:outline-none text-green">
+              <button className="w-32 py-2 mr-4 font-semibold transition rounded-full focus:outline-none text-green hover:bg-gray-200 hover:text-green">
                 Log in
               </button>
             </Link>

@@ -1,5 +1,6 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { User } from "../types";
+import Axios from "axios";
 
 interface State {
   authenticated: boolean;
@@ -34,10 +35,25 @@ const reducer = (state: State, { type, payload }: Action) => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, defaultDispatch] = useReducer(reducer, {
     user: null,
     authenticated: false,
   });
+
+  const dispatch = (type: string, payload?: any) =>
+    defaultDispatch({ type, payload });
+
+  useEffect(() => {
+    async function loadUser() {
+      try {
+        const res = await Axios.get("/auth/me");
+        dispatch("LOGIN", res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    loadUser();
+  }, []);
 
   return (
     <DispatchContext.Provider value={dispatch}>

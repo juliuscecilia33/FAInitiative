@@ -1,9 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { Post } from "../types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import classNames from "classnames";
+
 import Axios from "axios";
+import { Post } from "../types";
 
 dayjs.extend(relativeTime);
 
@@ -85,7 +87,12 @@ export default function PostCard({
             className="flex items-center justify-center px-2 mr-5 text-gray-300 transition rounded cursor-pointer hover:bg-gray-200 hover:text-green"
             onClick={() => vote(1)}
           >
-            <i className="mr-2 text-2xl cursor-pointer fas fa-heartbeat"></i>
+            <i
+              className={classNames(
+                "mr-2 text-2xl cursor-pointer fas fa-heartbeat",
+                { "text-green": userVote === 1 }
+              )}
+            ></i>
             <p className="text-sm font-semibold">Love</p>
           </div>
           <Link href={url}>

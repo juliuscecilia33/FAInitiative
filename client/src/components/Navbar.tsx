@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import { useAuthState, useAuthDispatch } from "../context/auth";
 
 const Navbar: React.FC = () => {
-  const { authenticated } = useAuthState();
+  const { authenticated, loading } = useAuthState();
   const dispatch = useAuthDispatch();
 
   const logout = () => {
@@ -31,27 +31,28 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div className="flex items-center justify-center">
-        {authenticated ? (
-          <button
-            className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-green"
-            onClick={logout}
-          >
-            Log out
-          </button>
-        ) : (
-          <Fragment>
-            <Link href="/login">
-              <button className="w-32 py-2 mr-4 font-semibold transition rounded-full focus:outline-none text-green hover:bg-gray-200 hover:text-green">
-                Log in
-              </button>
-            </Link>
-            <Link href="/register">
-              <button className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-green">
-                Sign up
-              </button>
-            </Link>
-          </Fragment>
-        )}
+        {!loading &&
+          (authenticated ? (
+            <button
+              className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-green"
+              onClick={logout}
+            >
+              Log out
+            </button>
+          ) : (
+            <Fragment>
+              <Link href="/login">
+                <button className="w-32 py-2 mr-4 font-semibold transition rounded-full focus:outline-none text-green hover:bg-gray-200 hover:text-green">
+                  Log in
+                </button>
+              </Link>
+              <Link href="/register">
+                <button className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-green">
+                  Sign up
+                </button>
+              </Link>
+            </Fragment>
+          ))}
       </div>
     </div>
   );

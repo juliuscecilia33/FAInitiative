@@ -1,8 +1,9 @@
 import "../styles/tailwind.css";
 import { AppProps } from "next/app";
 import Axios from "axios";
-import { Fragment } from "react";
 import { useRouter } from "next/router";
+
+import { AuthProvider } from "../context/auth";
 
 import Navbar from "../components/Navbar";
 
@@ -15,10 +16,10 @@ function App({ Component, pageProps }: AppProps) {
   const authRoute = authRoutes.includes(pathname);
 
   return (
-    <Fragment>
+    <AuthProvider>
       {!authRoute && <Navbar />}
       <Component {...pageProps} />
-    </Fragment>
+    </AuthProvider>
   );
 }
 

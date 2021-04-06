@@ -25,7 +25,9 @@ function App({ Component, pageProps }: AppProps) {
     >
       <AuthProvider>
         {!authRoute && <Navbar />}
-        <Component {...pageProps} />
+        <div className={authRoute ? "" : "flex w-full pt-vh"}>
+          <Component {...pageProps} />
+        </div>
       </AuthProvider>
     </SWRConfig>
   );

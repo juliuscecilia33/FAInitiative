@@ -19,7 +19,13 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-between w-full px-8 bg-white border-b h-8v border-primary">
-      <img className="h-auto" src="/images/Logo.png" alt="logo" />
+      <Link href="/">
+        <img
+          className="h-auto cursor-pointer"
+          src="/images/Logo.png"
+          alt="logo"
+        />
+      </Link>
       <div className="flex items-center w-3/12 px-5 ml-10 border rounded-full bg-secondary font-body focus:bg-white hover:bg-white">
         <i className="mr-3 text-gray-400 fas fa-search"></i>
         <input

@@ -104,14 +104,14 @@ export default function PostCard({
         </div>
       </div>
       <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-green h-1/7">
-        <Link href={`/r/${subName}`}>
+        <Link href={`/fa/${subName}`}>
           <img
             className="w-6 h-auto mr-2 cursor-pointer"
             src="/images/companylogo.png"
             alt="company logo"
           />
         </Link>
-        <Link href={`/r/${subName}`}>
+        <Link href={`/fa/${subName}`}>
           <a className="text-white transition hover:underline">/fa/{subName}</a>
         </Link>
       </div>

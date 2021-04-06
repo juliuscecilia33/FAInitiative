@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Axios from "axios";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -17,7 +17,7 @@ export default function Home() {
   const { data: posts } = useSWR("/posts");
 
   return (
-    <div className="flex w-full pt-vh">
+    <Fragment>
       <Head>
         <title>FA Intiative</title>
       </Head>
@@ -30,6 +30,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 }

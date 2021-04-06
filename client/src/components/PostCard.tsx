@@ -112,7 +112,7 @@ export default function PostCard({
           />
         </Link>
         <Link href={`/r/${subName}`}>
-          <a className="text-white">/fa/{subName}</a>
+          <a className="text-white transition hover:underline">/fa/{subName}</a>
         </Link>
       </div>
     </div>

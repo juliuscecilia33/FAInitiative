@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 
 import Entity from "./Entity";
-import { Post } from "./Post";
+import Post from "./Post";
 import User from "./User";
 
 import { makeId } from "../util/helpers";

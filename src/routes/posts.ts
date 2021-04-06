@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import Comment from "../entities/Comment";
-import { Post } from "../entities/Post";
+import Post from "../entities/Post";
 import Sub from "../entities/Sub";
 
 import auth from "../middleware/auth";

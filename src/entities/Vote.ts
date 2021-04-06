@@ -2,7 +2,7 @@ import { JoinColumn, ManyToOne } from "typeorm";
 import { Entity as TOEntity, Column } from "typeorm";
 
 import Entity from "./Entity";
-import { Post } from "./Post";
+import Post from "./Post";
 import User from "./User";
 import Comment from "./Comment";
 

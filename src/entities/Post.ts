@@ -17,7 +17,7 @@ import User from "./User";
 import Vote from "./Vote";
 
 @TOEntity("posts")
-export class Post extends Entity {
+export default class Post extends Entity {
   constructor(post: Partial<Post>) {
     super();
     Object.assign(this, post);

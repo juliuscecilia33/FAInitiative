@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
         {!loading &&
           (authenticated ? (
             <button
-              className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-green"
+              className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary"
               onClick={logout}
             >
               Log out

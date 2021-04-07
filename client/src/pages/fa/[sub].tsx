@@ -17,7 +17,7 @@ export default function Sub() {
         {sub && (
           <div className="flex flex-col items-center justify-center w-full">
             {sub.posts.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.identifier} post={post} />
             ))}
           </div>
         )}

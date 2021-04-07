@@ -111,7 +111,7 @@ export default function Register() {
                   {errors.agreement}
                 </small>
               </div>
-              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none focus:outline-none bg-green font-body">
+              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary font-body">
                 Sign up
               </button>
               <p className="text-sm text-secondary font-body">

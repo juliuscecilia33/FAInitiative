@@ -42,6 +42,12 @@ module.exports = {
         "4xl": "3rem",
       },
     },
+    gradientColorStops: (theme) => ({
+      ...theme("colors"),
+      primary: "#5C9379",
+      secondary: "#B4C681",
+      danger: "#e3342f",
+    }),
     backgroundColor: (theme) => ({
       ...theme("colors"),
       primary: "#3490dc",

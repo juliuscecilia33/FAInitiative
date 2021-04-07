@@ -95,7 +95,7 @@ export default function Register() {
                 error={errors.password}
                 type="password"
               />
-              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none bg-green font-body">
+              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none bg-gradient-to-r from-primary to-secondary font-body">
                 Log in
               </button>
               <p className="text-sm text-secondary font-body">

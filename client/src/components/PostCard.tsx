@@ -103,7 +103,7 @@ export default function PostCard({
           </Link>
         </div>
       </div>
-      <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-green h-1/7">
+      <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-gradient-to-r from-primary to-secondary h-1/7">
         <Link href={`/fa/${subName}`}>
           <img
             className="w-6 h-auto mr-2 cursor-pointer"

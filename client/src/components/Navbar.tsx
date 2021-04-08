@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
                 </button>
               </Link>
               <Link href="/register">
-                <button className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-green">
+                <button className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
                   Sign up
                 </button>
               </Link>

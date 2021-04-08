@@ -10,17 +10,25 @@ export default function Sub() {
 
   const { data: sub } = useSWR(subName ? `/subs/${subName}` : null);
 
+  let postsMarkup;
+
+  if (!sub) {
+    postsMarkup = <p className="text-lg text-center">Loading...</p>;
+  } else if (sub.posts.length === 0) {
+    postsMarkup = (
+      <p className="text-lg text-center">No posts submitted yet!</p>
+    );
+  } else {
+    postsMarkup = sub.posts.map((post) => (
+      <PostCard key={post.identifier} post={post} />
+    ));
+  }
+
   return (
     <div className="flex w-full h-92v">
       <Sidebar />
       <div className="flex flex-col items-center w-full h-full pt-8 bg-transparent">
-        {sub && (
-          <div className="flex flex-col items-center justify-center w-full">
-            {sub.posts.map((post) => (
-              <PostCard key={post.identifier} post={post} />
-            ))}
-          </div>
-        )}
+        {postsMarkup}
       </div>
     </div>
   );

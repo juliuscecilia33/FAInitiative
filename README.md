@@ -10,6 +10,7 @@
 ## Mockups (Made in Figma by me!)
 
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page1.png)
+![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/mockups/Page6.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page2.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page3.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page4.png)

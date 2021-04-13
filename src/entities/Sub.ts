@@ -16,19 +16,22 @@ export default class Sub extends Entity {
 
   @Index()
   @Column({ unique: true })
-  name: String;
+  name: string;
 
   @Column()
-  title: String;
+  title: string;
 
   @Column({ type: "text", nullable: true })
-  description: String;
+  description: string;
 
   @Column({ nullable: true })
-  ImageUrn: String;
+  ImageUrn: string;
 
   @Column({ nullable: true })
-  bannerUrn: String;
+  bannerUrn: string;
+
+  @Column()
+  username: string;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: "username", referencedColumnName: "username" })

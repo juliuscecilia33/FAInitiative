@@ -105,11 +105,20 @@ export default function PostCard({
       </div>
       <div className="flex items-center justify-center w-full px-10 text-sm rounded-bl-full rounded-br-full bg-gradient-to-r from-primary to-secondary h-1/7">
         <Link href={`/fa/${subName}`}>
-          <img
+          <div
+            className="w-6 h-6 mr-2 rounded-full cursor-pointer"
+            style={{
+              backgroundImage: `url("/images/companylogo.png")`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></div>
+          {/* <img
             className="w-6 h-auto mr-2 cursor-pointer"
             src="/images/companylogo.png"
             alt="company logo"
-          />
+          /> */}
         </Link>
         <Link href={`/fa/${subName}`}>
           <a className="text-white transition hover:underline">/fa/{subName}</a>

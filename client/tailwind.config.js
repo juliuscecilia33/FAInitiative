@@ -17,6 +17,8 @@ module.exports = {
       width: {
         "1/18": "5.555555555%",
         "17/18": "94.444444444%",
+        "2/7": "28.571428571%",
+        "4/7": "57.142857142%",
       },
       height: {
         "7v": "7vh",
@@ -60,6 +62,7 @@ module.exports = {
       secondary: "#001A23",
       minimal: "#C2C2C2",
       green: "#5B9279",
+      lightGray: "#979797",
     }),
 
     borderColor: (theme) => ({

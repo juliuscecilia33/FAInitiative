@@ -4,13 +4,14 @@ import { Fragment } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
 import Sidebar from "../../components/Sidebar";
+import { Sub } from "../../types";
 
-export default function Sub() {
+export default function SubPage() {
   const router = useRouter();
 
   const subName = router.query.sub;
 
-  const { data: sub, error } = useSWR(subName ? `/subs/${subName}` : null);
+  const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
 
   if (error) router.push("/");
 
@@ -42,6 +43,10 @@ export default function Sub() {
             {/* Sub info and images */}
             {/* Posts and Sidebar */}
             <div className="flex flex-col items-center w-full pt-8 bg-transparent pl-1/18">
+              <div className="flex items-center justify-around w-full px-20 mb-20">
+                <div className="w-7/12 h-56 rounded-2xl bg-gradient-to-r from-primary to-secondary"></div>
+                <div className="w-3/12 bg-blue-400 h-36 rounded-2xl"></div>
+              </div>
               {postsMarkup}
             </div>
           </Fragment>

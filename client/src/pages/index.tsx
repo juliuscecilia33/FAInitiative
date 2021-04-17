@@ -21,10 +21,10 @@ export default function Home() {
       <Head>
         <title>FA Intiative</title>
       </Head>
-      <div className="flex w-full h-92v">
+      <div className="flex w-full">
         <Sidebar />
 
-        <div className="flex flex-col items-center w-full h-full pt-8 bg-transparent pl-1/18">
+        <div className="flex flex-col items-center w-full pt-8 bg-transparent pl-1/18">
           {posts?.map((post) => (
             <PostCard post={post} key={post.identifier} />
           ))}

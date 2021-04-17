@@ -32,6 +32,12 @@ export default function SubPage() {
     setOwnSub(authenticated && user.username === sub.username);
   }, [sub]);
 
+  const openFileInput = (type: string) => {
+    if (!ownSub) return;
+    fileInputRef.current.name = type;
+    fileInputRef.current.click();
+  };
+
   if (error) router.push("/");
 
   let postsMarkup;
@@ -69,6 +75,7 @@ export default function SubPage() {
                     "h-56 bg-gradient-to-r from-primary to-secondary w-4/7 rounded-2xl",
                     { "cursor-pointer": ownSub }
                   )}
+                  onClick={() => openFileInput("banner")}
                 >
                   {sub.bannerUrl ? (
                     <div
@@ -94,6 +101,7 @@ export default function SubPage() {
                           className={classNames("rounded-full", {
                             "cursor-pointer": ownSub,
                           })}
+                          onClick={() => openFileInput("image")}
                           width={100}
                           height={100}
                         />

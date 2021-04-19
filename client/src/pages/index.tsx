@@ -21,14 +21,16 @@ export default function Home() {
       <Head>
         <title>FA Intiative</title>
       </Head>
-      <div className="flex w-full">
+      <div className="flex w-full pr-20">
         <Sidebar />
 
-        <div className="flex flex-col items-center w-full pt-8 bg-transparent pl-1/18">
+        <div className="flex flex-col items-end w-10/12 pt-8 bg-transparent px-2/18">
           {posts?.map((post) => (
             <PostCard post={post} key={post.identifier} />
           ))}
         </div>
+
+        <div className="w-2/12 mt-20 bg-white shadow-2xl h-50v rounded-4xl"></div>
       </div>
     </Fragment>
   );

@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         body: ["Roboto"],
+        secondary: ["Yeseva One"],
       },
       fontSize: {
         xs2: ".45rem",

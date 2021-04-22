@@ -147,7 +147,9 @@ export default function SubPage() {
                   </div>
                 </div>
               </div>
-              {postsMarkup}
+              <div className="flex flex-col items-center w-8/12">
+                {postsMarkup}
+              </div>
             </div>
           </Fragment>
         )}

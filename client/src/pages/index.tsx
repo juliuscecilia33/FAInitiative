@@ -47,12 +47,14 @@ export default function Home() {
               >
                 <div className="flex items-center">
                   <div className="w-8 h-8 mr-2 overflow-hidden rounded-full shadow-md cursor-pointer bg-gradient-to-r from-primary to-secondary">
-                    <Image
-                      src={sub.imageUrl}
-                      alt="Sub"
-                      width={100}
-                      height={100}
-                    />
+                    <Link href={`/fa/${sub.name}`}>
+                      <Image
+                        src={sub.imageUrl}
+                        alt="Sub"
+                        width={100}
+                        height={100}
+                      />
+                    </Link>
                   </div>
                   <Link href={`/fa/${sub.name}`}>
                     <a className="text-base font-medium truncate cursor-pointer w-28 hover:underline text-green">

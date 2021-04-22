@@ -1,20 +1,21 @@
 import Head from "next/head";
-import Link from "next/link";
-import Axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import Sidebar from "../components/Sidebar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import useSWR from "swr";
 
-import { Post } from "../types";
+import { Post, Sub } from "../types";
 
 import PostCard from "../components/PostCard";
+import Image from "next/image";
+import Link from "next/link";
 
 dayjs.extend(relativeTime);
 
 export default function Home() {
   const { data: posts } = useSWR("/posts");
+  const { data: topSubs } = useSWR("/misc/top-subs");
 
   return (
     <Fragment>
@@ -39,22 +40,34 @@ export default function Home() {
             <p className="mb-4 text-2xl text-secondary font-secondary">
               Assemblies
             </p>
-            <div className="flex items-center w-full bg-transparent">
-              <div className="flex items-center">
-                <div
-                  className="w-10 h-10 mr-2 rounded-full shadow-md cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                  style={{
-                    backgroundImage: `url("/images/Page3.png")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                ></div>
-                <p className="text-base font-medium cursor-pointer hover:underline text-green">
-                  /fa/stories
-                </p>
+            {topSubs?.map((sub: Sub) => (
+              <div
+                key={sub.name}
+                className="flex items-center justify-between w-full mb-4 bg-transparent"
+              >
+                <div className="flex items-center">
+                  <div className="w-10 h-10 mr-2 overflow-hidden rounded-full shadow-md cursor-pointer bg-gradient-to-r from-primary to-secondary">
+                    <Image
+                      src={sub.imageUrl}
+                      alt="Sub"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                  <Link href={`/fa/${sub.name}`}>
+                    <a className="text-base font-medium cursor-pointer hover:underline text-green">
+                      /fa/{sub.name}
+                    </a>
+                  </Link>
+                </div>
+                <div className="flex items-center">
+                  <i className="mr-2 text-base text-green fas fa-arrow-up"></i>
+                  <div className="flex items-center justify-center text-base font-bold rounded-full w-9 h-9 bg-secGray">
+                    {sub.postCount}
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

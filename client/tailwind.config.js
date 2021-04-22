@@ -58,6 +58,7 @@ module.exports = {
       primary: "#3490dc",
       secondary: "#E8F1F2",
       green: "#5B9279",
+      secGray: "#E8F1F2",
     }),
     textColor: (theme) => ({
       ...theme("colors"),
@@ -66,6 +67,7 @@ module.exports = {
       minimal: "#C2C2C2",
       green: "#5B9279",
       lightGray: "#979797",
+      secLightGray: "#E8F1F2",
     }),
 
     borderColor: (theme) => ({

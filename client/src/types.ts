@@ -33,4 +33,5 @@ export interface Sub {
   // Virtuals
   imageUrl: string;
   bannerUrl: string;
+  postCount?: number;
 }

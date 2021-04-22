@@ -45,7 +45,7 @@ export default function PostCard({
   return (
     <div
       key={identifier}
-      className="flex flex-col items-center w-9/12 bg-white shadow-2xl h-52 rounded-tl-4xl rounded-tr-4xl rounded-bl-3.5xl rounded-br-3.5xl mb-12"
+      className="flex flex-col items-center w-10/12 bg-white shadow-2xl h-52 rounded-tl-4xl rounded-tr-4xl rounded-bl-3.5xl rounded-br-3.5xl mb-12"
     >
       <div className="flex items-center justify-between w-full px-10 bg-secondary h-2/7 rounded-tl-4xl rounded-tr-4xl">
         <div className="flex items-center justify-center">

@@ -1,4 +1,4 @@
-// #16
+// #16 14:08
 
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -11,6 +11,7 @@ import { useAuthState } from "../../context/auth";
 import Image from "next/image";
 import classNames from "classnames";
 import Axios from "axios";
+import Assemblies from "../../components/Assemblies";
 
 export default function SubPage() {
   // Local State

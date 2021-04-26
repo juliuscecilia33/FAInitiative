@@ -1,4 +1,4 @@
-// #16 14:08
+// #16 18:51
 
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ import { useAuthState } from "../../context/auth";
 import Image from "next/image";
 import classNames from "classnames";
 import Axios from "axios";
-import Assemblies from "../../components/Assemblies";
+import AssembliesAndSub from "../../components/AssembliesAndSub";
 
 export default function SubPage() {
   // Local State
@@ -22,8 +22,6 @@ export default function SubPage() {
 
   // Utils
   const router = useRouter();
-
-  const { data: topSubs } = useSWR("/misc/top-subs");
 
   const fileInputRef = createRef<HTMLInputElement>();
 
@@ -150,11 +148,11 @@ export default function SubPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex w-full">
+              <div className="flex justify-center w-full">
                 <div className="flex flex-col items-center w-8/12">
                   {postsMarkup}
                 </div>
-                <Assemblies topSubs={topSubs} />
+                <AssembliesAndSub sub={sub} />
               </div>
             </div>
           </Fragment>

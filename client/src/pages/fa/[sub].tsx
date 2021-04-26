@@ -23,6 +23,8 @@ export default function SubPage() {
   // Utils
   const router = useRouter();
 
+  const { data: topSubs } = useSWR("/misc/top-subs");
+
   const fileInputRef = createRef<HTMLInputElement>();
 
   const subName = router.query.sub;
@@ -148,8 +150,11 @@ export default function SubPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-8/12">
-                {postsMarkup}
+              <div className="flex w-full">
+                <div className="flex flex-col items-center w-8/12">
+                  {postsMarkup}
+                </div>
+                <Assemblies topSubs={topSubs} />
               </div>
             </div>
           </Fragment>

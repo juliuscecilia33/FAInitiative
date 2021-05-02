@@ -2,13 +2,16 @@ import Image from "next/image";
 import { Post, Sub } from "../types";
 import Link from "next/link";
 import useSWR from "swr";
+import dayjs from "dayjs";
+import { useAuthState } from "../context/auth";
 
 export default function AssembliesAndSub({ sub }) {
   const { data: topSubs } = useSWR("/misc/top-subs");
+  const { authenticated } = useAuthState();
 
   return (
     <div className="flex flex-col items-center w-4/20">
-      <div className="flex flex-col w-full mb-16 bg-white shadow-xl h-80 rounded-4xl">
+      <div className="flex flex-col w-full pb-6 mb-16 bg-white shadow-xl rounded-4xl">
         <div className="flex items-center w-full h-16 px-8 mb-4 bg-gradient-to-r from-primary to-secondary rounded-tl-4xl rounded-tr-4xl">
           <p className="text-xl font-semibold text-white ">About Assembly</p>
         </div>
@@ -23,14 +26,20 @@ export default function AssembliesAndSub({ sub }) {
             <p className="text-sm">Online</p>
           </div>
         </div>
-        <div className="flex items-center px-8 mt-2 mb-4">
+        <div className="flex items-center px-8 mb-5">
           <i className="mr-3 text-2xl fas fa-seedling text-green"></i>
-          <p className="text-base text-gray-400">Created March 2021</p>
+          <p className="text-base text-gray-400">
+            Created {dayjs(sub.createdAt).format("D MMM YYYY")}
+          </p>
         </div>
-        <button className="flex items-center justify-center w-5/12 py-2 mx-auto text-sm font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
-          <i className="h-auto mr-2 text-sm text-white fas fa-plus"></i>
-          Create Post
-        </button>
+        {authenticated && (
+          <Link href={`/fa/${sub.name}/submit`}>
+            <button className="flex items-center justify-center w-5/12 py-2 mx-auto text-sm font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+              <i className="h-auto mr-2 text-sm text-white fas fa-plus"></i>
+              Create Post
+            </button>
+          </Link>
+        )}
       </div>
       <button className="flex items-center justify-center w-6/12 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
         <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>

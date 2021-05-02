@@ -32,7 +32,7 @@ export default function Home() {
           ))}
         </div>
 
-        <Assemblies topSubs={topSubs} />
+        <Assemblies />
       </div>
     </Fragment>
   );

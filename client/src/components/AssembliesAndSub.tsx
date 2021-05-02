@@ -7,12 +7,22 @@ export default function AssembliesAndSub({ sub }) {
   const { data: topSubs } = useSWR("/misc/top-subs");
 
   return (
-    <div className="flex flex-col items-center mt-20 w-4/20">
-      <div className="flex flex-col w-full mb-16 bg-white shadow-xl h-1/5 rounded-4xl">
-        <div className="flex items-center w-full h-16 px-10 mb-4 bg-gradient-to-r from-primary to-secondary rounded-tl-4xl rounded-tr-4xl">
-          <p className="text-xl font-semibold text-white">About Assembly</p>
+    <div className="flex flex-col items-center w-4/20">
+      <div className="flex flex-col w-full mb-16 bg-white shadow-xl h-80 rounded-4xl">
+        <div className="flex items-center w-full h-16 px-8 mb-4 bg-gradient-to-r from-primary to-secondary rounded-tl-4xl rounded-tr-4xl">
+          <p className="text-xl font-semibold text-white ">About Assembly</p>
         </div>
-        <p>{sub.description}</p>
+        <p className="px-8 truncate">{sub.description}</p>
+        <div className="flex px-8 my-6 font-medium">
+          <div className="flex flex-col mr-12">
+            <p className="text-lg font-bold text-green">20</p>
+            <p className="text-sm">Members</p>
+          </div>
+          <div className="flex flex-col">
+            <p className="text-lg font-bold text-green">16</p>
+            <p className="text-sm">Online</p>
+          </div>
+        </div>
       </div>
       <button className="flex items-center justify-center w-6/12 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
         <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>

@@ -23,6 +23,14 @@ export default function AssembliesAndSub({ sub }) {
             <p className="text-sm">Online</p>
           </div>
         </div>
+        <div className="flex items-center px-8 mt-2 mb-4">
+          <i className="mr-3 text-2xl fas fa-seedling text-green"></i>
+          <p className="text-base text-gray-400">Created March 2021</p>
+        </div>
+        <button className="flex items-center justify-center w-5/12 py-2 mx-auto text-sm font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+          <i className="h-auto mr-2 text-sm text-white fas fa-plus"></i>
+          Create Post
+        </button>
       </div>
       <button className="flex items-center justify-center w-6/12 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
         <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>

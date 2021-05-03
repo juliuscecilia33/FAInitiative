@@ -76,12 +76,14 @@ export default function PostCard({
         </div>
       </div>
       <div className="flex flex-col justify-between w-full px-10 py-2 h-4/7">
-        <div className="flex flex-col w-full">
-          <p className="mb-1 text-xl font-bold truncate text-secondary">
-            {title}
-          </p>
-          <p className="text-sm truncate text-secondary">{body}</p>
-        </div>
+        <Link href={url}>
+          <div className="flex flex-col w-full cursor-pointer">
+            <p className="mb-1 text-xl font-bold truncate text-secondary">
+              {title}
+            </p>
+            <p className="text-sm truncate text-secondary">{body}</p>
+          </div>
+        </Link>
         <div className="flex items-center">
           <div
             className="flex items-center justify-center px-2 mr-5 text-gray-300 transition rounded cursor-pointer hover:bg-gray-200 hover:text-green"

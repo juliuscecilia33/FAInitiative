@@ -62,7 +62,7 @@ export default class Post extends Entity {
   protected url: string;
   @AfterLoad()
   createFields() {
-    this.url = `/r/${this.subName}/${this.identifier}/${this.slug}`;
+    this.url = `/fa/${this.subName}/${this.identifier}/${this.slug}`;
   }
 
   protected userVote: number;

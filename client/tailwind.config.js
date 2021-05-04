@@ -39,6 +39,8 @@ module.exports = {
         "60v": "60vh",
         "70v": "70vh",
         "80v": "80vh",
+        "83v": "83vh",
+        "85v": "85vh",
         "90v": "90vh",
         "92v": "92vh",
         "93v": "93vh",
@@ -50,6 +52,9 @@ module.exports = {
       borderRadius: {
         "3.5xl": "2.5rem",
         "4xl": "3rem",
+      },
+      inset: {
+        "1/18": "5.555555555%",
       },
     },
     gradientColorStops: (theme) => ({

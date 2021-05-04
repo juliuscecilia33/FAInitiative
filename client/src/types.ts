@@ -5,6 +5,7 @@ export interface Post {
   subName: string;
   createdAt: string;
   updatedAt: string;
+  sub?: Sub;
   body?: string;
   url: string;
   username: string;

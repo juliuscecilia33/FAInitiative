@@ -6,8 +6,19 @@ import useSWR from "swr";
 import Image from "next/image";
 import { Post } from "../../../../types";
 import AssembliesAndSub from "../../../../components/AssembliesAndSub";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import classNames from "classnames";
+import Axios from "axios";
+import { useAuthState } from "../../../../context/auth";
+
+dayjs.extend(relativeTime);
 
 export default function PostPage() {
+  // Global State
+  const { authenticated } = useAuthState();
+
+  // Utils
   const router = useRouter();
   const { identifier, sub, slug } = router.query;
 
@@ -17,6 +28,23 @@ export default function PostPage() {
 
   if (error) router.push("/");
 
+  const vote = async (value: number) => {
+    // If not logged in go to login
+    if (!authenticated) router.push("/login");
+
+    try {
+      const res = await Axios.post("/misc/vote", {
+        identifier,
+        slug,
+        value,
+      });
+
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -25,8 +53,8 @@ export default function PostPage() {
       <div className="flex w-full">
         <Sidebar />
 
-        <div className="flex items-center justify-end w-full py-6 pr-14 pl-1/18">
-          <div className="flex flex-col mx-auto mt-12 bg-white shadow-2xl p-14 w-4/7 rounded-4xl">
+        <div className="flex items-center justify-end w-full py-6 pr-14 pl-2/18">
+          <div className="flex flex-col w-6/12 mx-auto mt-12 bg-white shadow-2xl p-14 rounded-4xl">
             <div className="flex justify-between w-full">
               <div className="flex-col w-10/12">
                 <div className="flex items-center mb-4">
@@ -50,10 +78,18 @@ export default function PostPage() {
                   Body Description
                 </p>
               </div>
-              <div className="flex flex-col items-center justify-between py-5 h-28 w-1/18 rounded-4xl bg-secondary">
-                <i className="text-2xl fas fa-heartbeat text-green"></i>
-                <p className="font-bold text-secondary">25</p>
-              </div>
+              {post && (
+                <div className="flex flex-col items-center justify-between h-24 px-3 py-3 rounded-4xl bg-secondary">
+                  <i
+                    onClick={() => vote(1)}
+                    className={classNames(
+                      "text-2xl cursor-pointer fas fa-heartbeat text-gray-300 transition hover:text-green",
+                      { "text-green": post.userVote === 1 }
+                    )}
+                  ></i>
+                  <p className="font-bold text-secondary">{post.voteScore}</p>
+                </div>
+              )}
             </div>
             <div className="flex-col w-full mt-24 mb-2">
               <p className="text-sm">
@@ -68,7 +104,7 @@ export default function PostPage() {
                 // onChange={(e) => setValue(e.target.value)}
               />
             </div>
-            <button className="flex items-center justify-center px-8 py-2 ml-auto text-sm font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+            <button className="flex items-center justify-center py-2 ml-auto text-sm font-semibold text-white rounded-full outline-none px-7 focus:outline-none bg-gradient-to-r from-primary to-secondary">
               <i className="h-auto mr-2 text-base text-white fas fa-comment"></i>
               Comment
             </button>

@@ -32,6 +32,11 @@ export default function PostPage() {
     // If not logged in go to login
     if (!authenticated) router.push("/login");
 
+    // If vote is the same reset vote
+    if (value === post.userVote) {
+      value = 0;
+    }
+
     try {
       const res = await Axios.post("/misc/vote", {
         identifier,
@@ -45,6 +50,8 @@ export default function PostPage() {
     }
   };
 
+  // const loading = !data && !error;
+
   return (
     <>
       <Head>
@@ -55,30 +62,30 @@ export default function PostPage() {
 
         <div className="flex items-center justify-end w-full py-6 pr-14 pl-2/18">
           <div className="flex flex-col w-6/12 mx-auto mt-12 bg-white shadow-2xl p-14 rounded-4xl">
-            <div className="flex justify-between w-full">
-              <div className="flex-col w-10/12">
-                <div className="flex items-center mb-4">
-                  <p className="text-sm text-secondary">
-                    Posted by{" "}
-                    <span className="font-medium cursor-pointer text-green hover:underline">
-                      /u/username
-                    </span>
+            {post && (
+              <div className="flex justify-between w-full">
+                <div className="flex-col w-10/12">
+                  <div className="flex items-center mb-4">
+                    <p className="text-sm text-secondary">
+                      Posted by{" "}
+                      <Link href={`/u/${post.username}`}>
+                        <span className="font-medium cursor-pointer text-green hover:underline">
+                          /u/{post.username}
+                        </span>
+                      </Link>
+                    </p>
+                    <i className="mx-3 text-gray-300 text-xs2 fas fa-circle"></i>
+                    <Link href={post.url}>
+                      <p className="text-xs text-gray-400 cursor-pointer hover:underline">
+                        {dayjs(post.createdAt).fromNow()}
+                      </p>
+                    </Link>
+                  </div>
+                  <p className="w-11/12 mb-4 text-xl font-bold text-secondary">
+                    {post.title}
                   </p>
-                  <i className="mx-3 text-gray-300 text-xs2 fas fa-circle"></i>
-                  <p className="text-xs text-gray-400 cursor-pointer hover:underline">
-                    {/* {dayjs(createdAt).fromNow()} */}2 hours ago
-                  </p>
+                  <p className="w-10/12 text-base text-gray-400">{post.body}</p>
                 </div>
-                <p className="w-11/12 mb-4 text-xl font-bold text-secondary">
-                  Check out Arrowhead Mills! They have so much allergy-friendly
-                  foods! Arrowhead Mills has been one of America’s most trusted
-                  organic baking brands for 50 years.
-                </p>
-                <p className="w-10/12 text-base text-gray-400">
-                  Body Description
-                </p>
-              </div>
-              {post && (
                 <div className="flex flex-col items-center justify-between h-24 px-3 py-3 rounded-4xl bg-secondary">
                   <i
                     onClick={() => vote(1)}
@@ -89,12 +96,15 @@ export default function PostPage() {
                   ></i>
                   <p className="font-bold text-secondary">{post.voteScore}</p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             <div className="flex-col w-full mt-24 mb-2">
-              <p className="text-sm">
-                Comment as <span className="text-green">julius</span>
-              </p>
+              <div className="flex items-center justify-between w-full px-2">
+                <p className="text-sm">
+                  Comment as <span className="text-green">julius</span>
+                </p>
+                <p className="text-sm">{post?.commentCount} Comments</p>
+              </div>
             </div>
             <div className="flex w-full h-48 px-5 mb-6 border rounded-2xl bg-secondary font-body focus:bg-white hover:bg-white">
               <textarea

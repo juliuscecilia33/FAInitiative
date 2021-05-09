@@ -15,7 +15,7 @@ export default function AssembliesAndSub({ sub }) {
         <div className="flex items-center w-full h-16 px-8 mb-4 bg-gradient-to-r from-primary to-secondary rounded-tl-4xl rounded-tr-4xl">
           <p className="text-xl font-semibold text-white ">About Assembly</p>
         </div>
-        <p className="px-8 truncate">{sub.description}</p>
+        <p className="px-8 ">{sub.description}</p>
         <div className="flex px-8 my-6 font-medium">
           <div className="flex flex-col mr-12">
             <p className="text-lg font-bold text-green">20</p>

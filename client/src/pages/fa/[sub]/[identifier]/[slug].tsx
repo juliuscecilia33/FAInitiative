@@ -4,7 +4,7 @@ import Sidebar from "../../../../components/Sidebar";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Image from "next/image";
-import { Post } from "../../../../types";
+import { Post, Comment } from "../../../../types";
 import AssembliesAndSub from "../../../../components/AssembliesAndSub";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -24,6 +24,10 @@ export default function PostPage() {
 
   const { data: post, error } = useSWR<Post>(
     identifier && slug ? `/posts/${identifier}/${slug}` : null
+  );
+
+  const { data: comments } = useSWR<Comment[]>(
+    identifier && slug ? `/posts/${identifier}/${slug}/comments` : null
   );
 
   if (error) router.push("/");

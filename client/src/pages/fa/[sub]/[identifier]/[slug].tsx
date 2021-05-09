@@ -32,12 +32,15 @@ export default function PostPage() {
 
   if (error) router.push("/");
 
-  const vote = async (value: number) => {
+  const vote = async (value: number, comment?: Comment) => {
     // If not logged in go to login
     if (!authenticated) router.push("/login");
 
     // If vote is the same reset vote
-    if (value === post.userVote) {
+    if (
+      (!comment && value === post.userVote) ||
+      (comment && comment.userVote === value)
+    ) {
       value = 0;
     }
 
@@ -45,6 +48,7 @@ export default function PostPage() {
       const res = await Axios.post("/misc/vote", {
         identifier,
         slug,
+        commentIdentifier: comment?.identifier,
         value,
       });
 
@@ -64,8 +68,8 @@ export default function PostPage() {
       <div className="flex w-full">
         <Sidebar />
 
-        <div className="flex items-center justify-end w-full py-6 pr-14 pl-2/18">
-          <div className="flex flex-col w-6/12 mx-auto mt-12 bg-white shadow-2xl p-14 rounded-4xl">
+        <div className="flex justify-end w-full mt-14 pr-14 pl-2/18">
+          <div className="flex flex-col w-6/12 mx-auto bg-white shadow-2xl p-14 rounded-4xl mb-14">
             {post && (
               <div className="flex justify-between w-full">
                 <div className="flex-col w-10/12">
@@ -112,7 +116,7 @@ export default function PostPage() {
             </div>
             <div className="flex w-full h-48 px-5 mb-6 border rounded-2xl bg-secondary font-body focus:bg-white hover:bg-white">
               <textarea
-                placeholder="Comment"
+                placeholder="What do you think?"
                 className="w-full py-4 transition duration-200 bg-transparent outline-none"
                 // value={value}
                 // onChange={(e) => setValue(e.target.value)}
@@ -122,6 +126,38 @@ export default function PostPage() {
               <i className="h-auto mr-2 text-base text-white fas fa-comment"></i>
               Comment
             </button>
+            <div className="flex flex-col items-center w-full px-3 py-6 mt-14">
+              {comments?.map((comment) => (
+                <div
+                  className="flex items-center w-full my-6"
+                  key={comment.identifier}
+                >
+                  <div className="flex flex-col items-center px-3 py-3 mr-5 rounded-4xl bg-secondary">
+                    <i
+                      onClick={() => vote(1, comment)}
+                      className={classNames(
+                        "mb-2 text-xl cursor-pointer fas fa-heartbeat text-gray-300 transition hover:text-green",
+                        { "text-green": comment.userVote === 1 }
+                      )}
+                    ></i>
+                    <p className="font-bold text-secondary">
+                      {comment.voteScore}
+                    </p>
+                  </div>
+                  <div className="flex flex-col">
+                    <Link href={`/u/${comment.username}`}>
+                      <a className="mb-2 font-bold hover:underline text-secondary">
+                        {comment.username}
+                      </a>
+                    </Link>
+                    <p>
+                      long comment that no one will probably read unless you
+                      comment back
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           {post && <AssembliesAndSub sub={post.sub} />}
         </div>

@@ -1,3 +1,5 @@
+// 18 15:41
+
 import Head from "next/head";
 import Link from "next/link";
 import Sidebar from "../../../../components/Sidebar";
@@ -106,26 +108,51 @@ export default function PostPage() {
                 </div>
               </div>
             )}
-            <div className="flex-col w-full mt-24 mb-2">
-              <div className="flex items-center justify-between w-full px-2">
-                <p className="text-sm">
-                  Comment as <span className="text-green">julius</span>
-                </p>
-                <p className="text-sm">{post?.commentCount} Comments</p>
+            {authenticated && (
+              <div className="flex-col w-full mt-24 mb-2">
+                <div className="flex items-center justify-between w-full px-2">
+                  <p className="text-sm">
+                    Comment as <span className="text-green">julius</span>
+                  </p>
+                  <p className="text-sm">{post?.commentCount} Comments</p>
+                </div>
               </div>
-            </div>
-            <div className="flex w-full h-48 px-5 mb-6 border rounded-2xl bg-secondary font-body focus:bg-white hover:bg-white">
-              <textarea
-                placeholder="What do you think?"
-                className="w-full py-4 transition duration-200 bg-transparent outline-none"
-                // value={value}
-                // onChange={(e) => setValue(e.target.value)}
-              />
-            </div>
-            <button className="flex items-center justify-center py-2 ml-auto text-sm font-semibold text-white rounded-full outline-none px-7 focus:outline-none bg-gradient-to-r from-primary to-secondary">
-              <i className="h-auto mr-2 text-base text-white fas fa-comment"></i>
-              Comment
-            </button>
+            )}
+            {authenticated ? (
+              <div className="flex w-full h-48 px-5 mb-6 border rounded-2xl bg-secondary font-body focus:bg-white hover:bg-white">
+                <textarea
+                  placeholder="What do you think?"
+                  className="w-full py-4 transition duration-200 bg-transparent outline-none"
+                  style={{ resize: "none" }}
+                  // value={value}
+                  // onChange={(e) => setValue(e.target.value)}
+                />
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center w-full h-48">
+                <p className="mb-4 text-center text-minimal">
+                  Need to be logged in to comment
+                </p>
+                <div className="flex items-center">
+                  <Link href="/login">
+                    <button className="w-32 py-2 mr-4 font-semibold transition rounded-full focus:outline-none text-green hover:bg-gray-200 hover:text-green">
+                      Log in
+                    </button>
+                  </Link>
+                  <Link href="/register">
+                    <button className="w-32 py-2 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+                      Sign up
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            )}
+            {authenticated && (
+              <button className="flex items-center justify-center py-2 ml-auto text-sm font-semibold text-white rounded-full outline-none px-7 focus:outline-none bg-gradient-to-r from-primary to-secondary">
+                <i className="h-auto mr-2 text-base text-white fas fa-comment"></i>
+                Comment
+              </button>
+            )}
             <div className="flex flex-col items-center w-full px-3 py-6 mt-14">
               {comments?.map((comment) => (
                 <div

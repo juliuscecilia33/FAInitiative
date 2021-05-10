@@ -26,7 +26,7 @@ export default function PostPage() {
     identifier && slug ? `/posts/${identifier}/${slug}` : null
   );
 
-  const { data: comments } = useSWR<Comment[]>(
+  const { data: comments, revalidate } = useSWR<Comment[]>(
     identifier && slug ? `/posts/${identifier}/${slug}/comments` : null
   );
 
@@ -45,14 +45,14 @@ export default function PostPage() {
     }
 
     try {
-      const res = await Axios.post("/misc/vote", {
+      await Axios.post("/misc/vote", {
         identifier,
         slug,
         commentIdentifier: comment?.identifier,
         value,
       });
 
-      console.log(res.data);
+      revalidate();
     } catch (err) {
       console.log(err);
     }
@@ -146,14 +146,15 @@ export default function PostPage() {
                   </div>
                   <div className="flex flex-col">
                     <Link href={`/u/${comment.username}`}>
-                      <a className="mb-2 font-bold hover:underline text-secondary">
-                        {comment.username}
+                      <a className="flex items-center mb-2 font-bold hover:underline text-secondary">
+                        {comment.username}{" "}
+                        <i className="mx-3 text-gray-300 text-xs2 fas fa-circle"></i>
+                        <p className="text-xs text-gray-400 cursor-pointer hover:underline">
+                          {dayjs(comment.createdAt).fromNow()}
+                        </p>
                       </a>
                     </Link>
-                    <p>
-                      long comment that no one will probably read unless you
-                      comment back
-                    </p>
+                    <p>{comment.body}</p>
                   </div>
                 </div>
               ))}

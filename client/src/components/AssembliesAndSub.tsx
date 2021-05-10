@@ -41,7 +41,7 @@ export default function AssembliesAndSub({ sub }) {
           </Link>
         )}
       </div>
-      <button className="flex items-center justify-center w-6/12 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+      <button className="flex items-center justify-center px-6 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
         <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>
         Create Assembly
       </button>

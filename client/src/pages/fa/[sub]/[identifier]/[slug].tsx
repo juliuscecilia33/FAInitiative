@@ -22,7 +22,7 @@ export default function PostPage() {
   const [newComment, setNewComment] = useState("");
 
   // Global State
-  const { authenticated } = useAuthState();
+  const { authenticated, user } = useAuthState();
 
   // Utils
   const router = useRouter();
@@ -72,6 +72,10 @@ export default function PostPage() {
       await Axios.post(`/posts/${post.identifier}/${post.slug}/comments`, {
         body: newComment,
       });
+
+      setNewComment("");
+
+      revalidate();
     } catch (err) {
       console.log(err);
     }
@@ -127,7 +131,10 @@ export default function PostPage() {
               <div className="flex-col w-full mt-24 mb-2">
                 <div className="flex items-center justify-between w-full px-2">
                   <p className="text-sm">
-                    Comment as <span className="text-green">julius</span>
+                    Comment as{" "}
+                    <span className="font-semibold text-green">
+                      {user.username}
+                    </span>
                   </p>
                   <p className="text-sm">{post?.commentCount} Comments</p>
                 </div>

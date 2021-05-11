@@ -1,4 +1,4 @@
-// 18 15:41
+// 18 21:40
 
 import Head from "next/head";
 import Link from "next/link";
@@ -13,10 +13,14 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import classNames from "classnames";
 import Axios from "axios";
 import { useAuthState } from "../../../../context/auth";
+import { FormEvent, useState } from "react";
 
 dayjs.extend(relativeTime);
 
 export default function PostPage() {
+  // Local State
+  const [newComment, setNewComment] = useState("");
+
   // Global State
   const { authenticated } = useAuthState();
 
@@ -60,7 +64,18 @@ export default function PostPage() {
     }
   };
 
-  // const loading = !data && !error;
+  const submitComment = async (event: FormEvent) => {
+    event.preventDefault();
+    if (newComment.trim() === "") return;
+
+    try {
+      await Axios.post(`/posts/${post.identifier}/${post.slug}/comments`, {
+        body: newComment,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -124,12 +139,12 @@ export default function PostPage() {
                   placeholder="What do you think?"
                   className="w-full py-4 transition duration-200 bg-transparent outline-none"
                   style={{ resize: "none" }}
-                  // value={value}
-                  // onChange={(e) => setValue(e.target.value)}
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
                 />
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center w-full h-48">
+              <div className="flex flex-col items-center justify-center w-full h-48 mt-6 border rounded-2xl">
                 <p className="mb-4 text-center text-minimal">
                   Need to be logged in to comment
                 </p>
@@ -148,7 +163,11 @@ export default function PostPage() {
               </div>
             )}
             {authenticated && (
-              <button className="flex items-center justify-center py-2 ml-auto text-sm font-semibold text-white rounded-full outline-none px-7 focus:outline-none bg-gradient-to-r from-primary to-secondary">
+              <button
+                onClick={submitComment}
+                disabled={newComment.trim() === ""}
+                className="flex items-center justify-center py-2 ml-auto text-sm font-semibold text-white rounded-full outline-none button px-7 focus:outline-none bg-gradient-to-r from-primary to-secondary"
+              >
                 <i className="h-auto mr-2 text-base text-white fas fa-comment"></i>
                 Comment
               </button>

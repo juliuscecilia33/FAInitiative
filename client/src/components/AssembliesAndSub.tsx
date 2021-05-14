@@ -10,7 +10,7 @@ export default function AssembliesAndSub({ sub }) {
 
   return (
     <div className="flex flex-col items-center w-4/20">
-      <AboutAssembly sub={sub} />
+      <AboutAssembly fullWidth={true} sub={sub} />
       <button className="flex items-center justify-center px-6 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
         <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>
         Create Assembly

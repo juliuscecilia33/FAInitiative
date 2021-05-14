@@ -23,7 +23,7 @@ export default function submit() {
         <title>Submit to FA Initiative</title>
       </Head>
       <Sidebar />
-      {sub && <AboutAssembly sub={sub} />}
+      {sub && <AboutAssembly sub={sub} fullWidth={false} />}
     </div>
   );
 }

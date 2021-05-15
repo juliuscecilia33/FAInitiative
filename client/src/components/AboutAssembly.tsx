@@ -12,11 +12,11 @@ export default function AboutAssembly(props) {
     <div
       className={classNames(
         {
-          "w-full flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl":
+          "w-full flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl h-30v":
             props.fullWidth,
         },
         {
-          "w-4/20 flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl":
+          "w-4/20 flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl h-30v":
             props.fullWidth === false,
         }
       )}

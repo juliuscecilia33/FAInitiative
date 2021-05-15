@@ -78,6 +78,7 @@ module.exports = {
       green: "#5B9279",
       lightGray: "#979797",
       secLightGray: "#E8F1F2",
+      greyColour: "#D2D2D2",
     }),
 
     borderColor: (theme) => ({

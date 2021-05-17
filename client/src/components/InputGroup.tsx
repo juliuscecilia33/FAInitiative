@@ -6,9 +6,11 @@ interface InputGroupProps {
   value: string;
   error: string | undefined;
   setValue: (str: string) => void;
+  maxLength: number;
 }
 
 const InputGroup: React.FC<InputGroupProps> = ({
+  maxLength,
   type,
   placeholder,
   value,
@@ -16,7 +18,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
   setValue,
 }) => {
   return (
-    <div className="w-11/12 mb-12">
+    <div className="w-11/12">
       <input
         type={type}
         placeholder={placeholder}
@@ -26,6 +28,7 @@ const InputGroup: React.FC<InputGroupProps> = ({
         )}
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        maxLength={maxLength}
       />
       <small className="font-medium text-red-600">{error}</small>
     </div>

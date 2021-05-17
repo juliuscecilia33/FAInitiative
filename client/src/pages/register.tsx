@@ -78,6 +78,7 @@ export default function Register() {
                 placeholder="Email"
                 error={errors.email}
                 type="email"
+                maxLength={null}
               />
               <InputGroup
                 value={username}
@@ -85,6 +86,7 @@ export default function Register() {
                 placeholder="Username"
                 error={errors.username}
                 type="text"
+                maxLength={null}
               />
               <InputGroup
                 value={password}
@@ -92,6 +94,7 @@ export default function Register() {
                 placeholder="Password"
                 error={errors.password}
                 type="password"
+                maxLength={null}
               />
               <div className="flex items-center justify-center mb-8">
                 <input

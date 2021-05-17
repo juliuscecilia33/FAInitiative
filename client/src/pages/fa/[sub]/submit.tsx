@@ -7,8 +7,9 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import InputGroup from "../../../components/InputGroup";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import TextAreaGroup from "../../../components/TextAreaGroup";
+import Axios from "axios";
 
 export default function submit() {
   const router = useRouter();
@@ -21,6 +22,20 @@ export default function submit() {
     error,
     revalidate,
   } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
+
+  const submitPost = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (title.trim() === "") return;
+
+    try {
+      await Axios.post("/posts", {
+        title: title.trim(),
+        description,
+        sub: sub.name,
+      });
+    } catch (err) {}
+  };
 
   if (error) router.push("/");
 
@@ -35,7 +50,9 @@ export default function submit() {
       <div className="flex justify-end w-full mt-14 pr-14 pl-2/18">
         <div className="flex flex-col items-center w-6/12 pb-10 mx-auto bg-white shadow-2xl rounded-4xl mb-14">
           <div className="flex items-center w-full h-16 mb-4 px-14 bg-gradient-to-r from-primary to-secondary rounded-tl-4xl rounded-tr-4xl">
-            <p className="text-xl font-semibold text-white ">Create Post</p>
+            <p className="text-xl font-semibold text-white ">
+              Submit a post to /fa/{subName}
+            </p>
             <i className="mx-6 text-gray-300 text-xs2 fas fa-circle"></i>
             <p className="text-sm text-greyColour">
               Posted by{" "}
@@ -47,19 +64,40 @@ export default function submit() {
             </p>
           </div>
           <div className="flex flex-col items-center w-full px-6 mt-6">
-            <InputGroup
-              value={title}
-              setValue={setTitle}
-              placeholder="Title"
-              error={null}
-              type="text"
-            />
-            <TextAreaGroup
-              value={description}
-              setValue={setDescription}
-              placeholder="Description"
-              error={null}
-            />
+            <div className="flex flex-col items-center w-full mb-8">
+              <InputGroup
+                value={title}
+                setValue={setTitle}
+                placeholder="Title"
+                error={null}
+                type="text"
+                maxLength={300}
+              />
+              <div className="self-start pl-12 mt-1 text-sm text-gray-500 select-none">
+                {title.trim().length}/300
+              </div>
+            </div>
+            <div className="flex flex-col items-center w-full mb-8">
+              <TextAreaGroup
+                value={description}
+                setValue={setDescription}
+                placeholder="Description (optional)"
+                error={null}
+                maxLength={1000}
+              />
+              <div className="self-start pl-12 mt-1 text-sm text-gray-500 select-none">
+                {description.trim().length}/1000
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end w-full px-14">
+            <button
+              disabled={title.trim().length === 0}
+              onClick={submitPost}
+              className="flex items-center justify-center px-10 py-2 font-semibold text-white rounded-full outline-none cursor-pointer drop-shadow-md focus:outline-none bg-gradient-to-r from-primary to-secondary"
+            >
+              Submit
+            </button>
           </div>
         </div>
         {sub && <AboutAssembly sub={sub} fullWidth={false} />}

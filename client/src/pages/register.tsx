@@ -72,30 +72,36 @@ export default function Register() {
               <p className="w-4/12 mb-8 text-sm text-center text-minimal font-body">
                 By signing up, you agree to our terms and conditions.
               </p>
-              <InputGroup
-                value={email}
-                setValue={setEmail}
-                placeholder="Email"
-                error={errors.email}
-                type="email"
-                maxLength={null}
-              />
-              <InputGroup
-                value={username}
-                setValue={setUsername}
-                placeholder="Username"
-                error={errors.username}
-                type="text"
-                maxLength={null}
-              />
-              <InputGroup
-                value={password}
-                setValue={setPassword}
-                placeholder="Password"
-                error={errors.password}
-                type="password"
-                maxLength={null}
-              />
+              <div className="flex justify-center w-full my-6">
+                <InputGroup
+                  value={email}
+                  setValue={setEmail}
+                  placeholder="Email"
+                  error={errors.email}
+                  type="email"
+                  maxLength={null}
+                />
+              </div>
+              <div className="flex justify-center w-full my-6">
+                <InputGroup
+                  value={username}
+                  setValue={setUsername}
+                  placeholder="Username"
+                  error={errors.username}
+                  type="text"
+                  maxLength={null}
+                />
+              </div>
+              <div className="flex justify-center w-full my-6">
+                <InputGroup
+                  value={password}
+                  setValue={setPassword}
+                  placeholder="Password"
+                  error={errors.password}
+                  type="password"
+                  maxLength={null}
+                />
+              </div>
               <div className="flex items-center justify-center mb-8">
                 <input
                   type="checkbox"

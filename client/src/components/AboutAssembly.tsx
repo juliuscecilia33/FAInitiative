@@ -12,11 +12,11 @@ export default function AboutAssembly(props) {
     <div
       className={classNames(
         {
-          "w-full flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl h-30v":
+          "w-full flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl ":
             props.fullWidth,
         },
         {
-          "w-4/20 flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl h-30v":
+          "w-4/20 flex flex-col pb-6 mb-16 bg-white shadow-xl rounded-4xl h-35v":
             props.fullWidth === false,
         }
       )}
@@ -43,7 +43,7 @@ export default function AboutAssembly(props) {
       </div>
       {authenticated && (
         <Link href={`/fa/${props.sub.name}/submit`}>
-          <button className="flex items-center justify-center w-5/12 py-2 mx-auto text-sm font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+          <button className="flex items-center justify-center px-6 py-2 mx-auto text-sm font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
             <i className="h-auto mr-2 text-sm text-white fas fa-plus"></i>
             Create Post
           </button>

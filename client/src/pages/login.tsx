@@ -81,21 +81,27 @@ export default function Register() {
               <p className="w-4/12 mb-8 text-sm text-center text-minimal font-body">
                 By signing in, you agree to our terms and conditions.
               </p>
-              <InputGroup
-                value={username}
-                setValue={setUsername}
-                placeholder="Username"
-                error={errors.username}
-                type="text"
-              />
-              <InputGroup
-                value={password}
-                setValue={setPassword}
-                placeholder="Password"
-                error={errors.password}
-                type="password"
-              />
-              <button className="w-4/12 py-3 mb-10 font-semibold text-white rounded-full shadow-xl outline-none bg-gradient-to-r from-primary to-secondary font-body">
+              <div className="flex justify-center w-full my-6">
+                <InputGroup
+                  value={username}
+                  setValue={setUsername}
+                  placeholder="Username"
+                  error={errors.username}
+                  type="text"
+                  maxLength={null}
+                />
+              </div>
+              <div className="flex justify-center w-full my-6">
+                <InputGroup
+                  value={password}
+                  setValue={setPassword}
+                  placeholder="Password"
+                  error={errors.password}
+                  type="password"
+                  maxLength={null}
+                />
+              </div>
+              <button className="w-4/12 py-3 mt-6 mb-10 font-semibold text-white rounded-full shadow-xl outline-none bg-gradient-to-r from-primary to-secondary font-body">
                 Log in
               </button>
               <p className="text-sm text-secondary font-body">

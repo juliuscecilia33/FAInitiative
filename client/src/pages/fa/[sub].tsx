@@ -11,6 +11,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import Axios from "axios";
 import AssembliesAndSub from "../../components/AssembliesAndSub";
+import AboutAssembly from "../../components/AboutAssembly";
 
 export default function SubPage() {
   // Local State
@@ -153,7 +154,7 @@ export default function SubPage() {
                 <div className="flex flex-col items-center w-8/12">
                   {postsMarkup}
                 </div>
-                <AssembliesAndSub sub={sub} />
+                <AboutAssembly fullWidth={false} sub={sub} />
               </div>
             </div>
           </Fragment>

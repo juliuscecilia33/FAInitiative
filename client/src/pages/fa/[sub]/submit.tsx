@@ -92,7 +92,7 @@ export default function submit() {
           </div>
           <div className="flex justify-end w-full px-14">
             <button
-              disabled={title.trim().length === 0}
+              disabled={title.trim() === ""}
               onClick={submitPost}
               className="flex items-center justify-center px-10 py-2 font-semibold text-white rounded-full outline-none cursor-pointer drop-shadow-md focus:outline-none bg-gradient-to-r from-primary to-secondary"
             >

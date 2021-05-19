@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 @layer components {
-  .button {
+  button {
     @apply disabled:opacity-50;
   }
 }

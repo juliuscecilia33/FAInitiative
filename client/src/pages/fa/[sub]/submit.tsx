@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Sidebar from "../../../components/Sidebar";
-import { Sub } from "../../../types";
+import { Post, Sub } from "../../../types";
 import useSWR from "swr";
 import AboutAssembly from "../../../components/AboutAssembly";
 import Head from "next/head";
@@ -29,12 +29,16 @@ export default function submit() {
     if (title.trim() === "") return;
 
     try {
-      await Axios.post("/posts", {
+      const { data: post } = await Axios.post<Post>("/posts", {
         title: title.trim(),
         description,
         sub: sub.name,
       });
-    } catch (err) {}
+
+      router.push(`/fa/${sub.name}/${post.identifier}/${post.slug}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (error) router.push("/");

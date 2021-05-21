@@ -15,7 +15,7 @@ export default function submit() {
   const router = useRouter();
   const { sub: subName } = router.query;
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [body, setBody] = useState("");
 
   const {
     data: sub,
@@ -31,7 +31,7 @@ export default function submit() {
     try {
       const { data: post } = await Axios.post<Post>("/posts", {
         title: title.trim(),
-        description,
+        body,
         sub: sub.name,
       });
 
@@ -83,14 +83,14 @@ export default function submit() {
             </div>
             <div className="flex flex-col items-center w-full mb-8">
               <TextAreaGroup
-                value={description}
-                setValue={setDescription}
+                value={body}
+                setValue={setBody}
                 placeholder="Description (optional)"
                 error={null}
                 maxLength={1000}
               />
               <div className="self-start pl-12 mt-1 text-sm text-gray-500 select-none">
-                {description.trim().length}/1000
+                {body.trim().length}/1000
               </div>
             </div>
           </div>

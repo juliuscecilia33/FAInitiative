@@ -7,6 +7,9 @@ module.exports = {
         body: ["Roboto"],
         secondary: ["Yeseva One"],
       },
+      margin: {
+        "1/18": "5.555555555%",
+      },
       fontSize: {
         xs2: ".45rem",
         xs: ".75rem",

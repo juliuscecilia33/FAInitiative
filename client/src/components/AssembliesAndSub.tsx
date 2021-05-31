@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Sub } from "../types";
 import Link from "next/link";
 import useSWR from "swr";
-import { useAuthState } from "../context/auth";
 import AboutAssembly from "./AboutAssembly";
 
 export default function AssembliesAndSub({ sub }) {

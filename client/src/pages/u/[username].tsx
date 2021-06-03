@@ -36,7 +36,7 @@ export default function user() {
                 Joined 6 Days ago
               </div>
             </div>
-            <div className="flex flex-col items-center w-full mt-14">
+            <div className="flex flex-col items-center w-14/18 mt-14">
               {data.submissions.map((submission: any) => {
                 if (submission.type === "Post") {
                   const post: Post = submission;
@@ -46,23 +46,33 @@ export default function user() {
                   return (
                     <div
                       key={comment.identifier}
-                      className="flex flex-col items-center w-9/12 py-4 my-4 bg-white rounded shadow-2xl"
+                      className="flex flex-col items-center w-9/12 pb-6 my-8 bg-white shadow-2xl rounded-4xl"
                     >
-                      <p>
+                      <div className="flex items-center w-full px-12 py-3 rounded-tl-4xl rounded-tr-4xl bg-gradient-to-r from-primary to-secondary">
+                        <i className="mr-5 text-2xl cursor-pointer fas fa-comment-dots text-secLightGray"></i>
                         <Link href={`/u/${comment.username}`}>
-                          <a>{comment.username}</a>
+                          <a className="text-base font-medium cursor-pointer text-secLightGray hover:underline">
+                            {comment.username}
+                          </a>
                         </Link>
-                      </p>
-                      <p> commented on</p>
-                      <p>
+                        <p className="ml-1 text-base text-secLightGray">
+                          {" "}
+                          commented on
+                        </p>
                         <Link href={comment.post.url}>
-                          <a>{comment.post.title}</a>
+                          <a className="ml-1 text-base font-medium truncate cursor-pointer text-secLightGray hover:underline">
+                            {comment.post.title}
+                          </a>
                         </Link>
+                        <Link href={`/fa/${comment.post.subName}`}>
+                          <a className="ml-1 text-sm truncate cursor-pointer text-secLightGray hover:underline">
+                            - /fa/{comment.post.subName}
+                          </a>
+                        </Link>
+                      </div>
+                      <p className="mt-5 text-base text-secondary">
+                        {comment.body}
                       </p>
-                      <Link href={`/fa/${comment.post.subName}`}>
-                        <a>/fa/{comment.post.subName}</a>
-                      </Link>
-                      <p>{comment.body}</p>
                     </div>
                   );
                 }

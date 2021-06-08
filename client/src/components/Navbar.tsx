@@ -6,6 +6,7 @@ import { Fragment, useState } from "react";
 
 import { useAuthState, useAuthDispatch } from "../context/auth";
 import { Sub } from "../types";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ const Navbar: React.FC = () => {
       setSubs(data);
       console.log(data);
     } catch (err) {
-      console.log(error);
+      console.log(err);
     }
   };
 
@@ -44,7 +45,7 @@ const Navbar: React.FC = () => {
           alt="logo"
         />
       </Link>
-      <div className="flex items-center w-3/12 px-5 ml-10 border rounded-full bg-secondary font-body focus:bg-white hover:bg-white">
+      <div className="relative flex items-center w-3/12 px-5 ml-10 border rounded-full bg-secondary font-body focus:bg-white hover:bg-white">
         <i className="mr-3 text-gray-400 fas fa-search"></i>
         <input
           type="text"
@@ -53,6 +54,28 @@ const Navbar: React.FC = () => {
           value={name}
           onChange={(e) => searchSubs(e.target.value)}
         />
+        <div
+          className="absolute left-0 right-0 bg-white"
+          style={{ top: "100%" }}
+        >
+          {subs?.map((sub) => (
+            <div className="flex items-center px-4 py-3 rounded-lg shadow-xl cursor-pointer hover:bg-gray-200">
+              <div className="flex overflow-hidden">
+                <Image
+                  src={sub.imageUrl}
+                  className="rounded-full"
+                  alt="Sub"
+                  height={40}
+                  width={40}
+                />
+                <div className="flex flex-col ml-4 text-sm">
+                  <div className="font-medium">{sub.name}</div>
+                  <p className="text-gray-600">{sub.title}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex items-center justify-center">
         {!loading &&

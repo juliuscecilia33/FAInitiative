@@ -1,10 +1,16 @@
+// #20 10:39
+
 import Link from "next/link";
 import Axios from "axios";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import { useAuthState, useAuthDispatch } from "../context/auth";
+import { Sub } from "../types";
 
 const Navbar: React.FC = () => {
+  const [name, setName] = useState("");
+  const [subs, setSubs] = useState<Sub[]>([]);
+
   const { authenticated, loading } = useAuthState();
   const dispatch = useAuthDispatch();
 
@@ -15,6 +21,18 @@ const Navbar: React.FC = () => {
         window.location.reload();
       })
       .catch((err) => console.log(err));
+  };
+
+  const searchSubs = async (subName: string) => {
+    setName(subName);
+
+    try {
+      const { data } = await Axios.get(`/subs/search/${subName}`);
+      setSubs(data);
+      console.log(data);
+    } catch (err) {
+      console.log(error);
+    }
   };
 
   return (
@@ -32,8 +50,8 @@ const Navbar: React.FC = () => {
           type="text"
           placeholder="Search"
           className="w-full py-2 pr-3 transition duration-200 bg-transparent outline-none"
-          // value={value}
-          // onChange={(e) => setValue(e.target.value)}
+          value={name}
+          onChange={(e) => searchSubs(e.target.value)}
         />
       </div>
       <div className="flex items-center justify-center">

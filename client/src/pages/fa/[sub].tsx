@@ -10,7 +10,6 @@ import { useAuthState } from "../../context/auth";
 import Image from "next/image";
 import classNames from "classnames";
 import Axios from "axios";
-import AssembliesAndSub from "../../components/AssembliesAndSub";
 import AboutAssembly from "../../components/AboutAssembly";
 
 export default function SubPage() {
@@ -97,8 +96,8 @@ export default function SubPage() {
             />
             {/* Sub info and images */}
             {/* Posts and Sidebar */}
-            <div className="flex flex-col items-center w-full pt-8 bg-transparent pl-1/18">
-              <div className="flex items-center justify-around w-full px-20 mb-20">
+            <div className="flex flex-col items-center w-full bg-transparent pl-1/18">
+              <div className="flex items-center justify-around w-full px-20 py-14 mb-14 bg-green">
                 <div
                   className={classNames(
                     "h-56 bg-gradient-to-r from-primary to-secondary w-4/7 rounded-2xl",
@@ -123,7 +122,7 @@ export default function SubPage() {
                 <div className="flex items-center justify-between px-5 bg-white shadow-2xl w-2/7 h-36 rounded-2xl ">
                   <div className="flex items-center">
                     <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-primary to-secondary">
-                      <div className="flex items-center justify-center bg-red-500 rounded-full w-14 h-14">
+                      <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary w-14 h-14">
                         <Image
                           src={sub.imageUrl}
                           alt="Sub"

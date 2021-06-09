@@ -6,7 +6,6 @@ import classNames from "classnames";
 
 export default function AboutAssembly(props) {
   const { authenticated } = useAuthState();
-  console.log(props.fullWidth);
 
   return (
     <div

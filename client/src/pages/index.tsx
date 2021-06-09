@@ -5,18 +5,13 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import useSWR from "swr";
 
-import { Post, Sub } from "../types";
-
 import PostCard from "../components/PostCard";
-import Image from "next/image";
-import Link from "next/link";
 import Assemblies from "../components/Assemblies";
 
 dayjs.extend(relativeTime);
 
 export default function Home() {
   const { data: posts } = useSWR("/posts");
-  const { data: topSubs } = useSWR("/misc/top-subs");
 
   return (
     <Fragment>

@@ -2,21 +2,27 @@ import Image from "next/image";
 import { Post, Sub } from "../types";
 import Link from "next/link";
 import useSWR from "swr";
+import { useAuthState } from "../context/auth";
 
 export default function Assemblies() {
-  const { data: topSubs } = useSWR("/misc/top-subs");
+  const { data: topSubs } = useSWR<Sub[]>("/misc/top-subs");
+  const { authenticated } = useAuthState();
 
   return (
     <div className="flex flex-col items-center mt-20 w-4/20">
-      <button className="flex items-center justify-center w-6/12 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
-        <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>
-        Create Assembly
-      </button>
+      {authenticated && (
+        <Link href="/subs/create">
+          <button className="flex items-center justify-center w-6/12 py-3 mb-6 font-semibold text-white rounded-full outline-none focus:outline-none bg-gradient-to-r from-primary to-secondary">
+            <i className="h-auto mr-2 text-base text-white fas fa-plus"></i>
+            Create Assembly
+          </button>
+        </Link>
+      )}
       <div className="flex flex-col w-full p-6 bg-white shadow-2xl rounded-4xl">
         <p className="mb-4 text-2xl text-secondary font-secondary">
           Assemblies
         </p>
-        {topSubs?.map((sub: Sub) => (
+        {topSubs?.map((sub) => (
           <div
             key={sub.name}
             className="flex items-center justify-between w-full mb-4 bg-transparent"

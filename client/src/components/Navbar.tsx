@@ -1,8 +1,8 @@
-// #20 10:39
+// #20 18:33
 
 import Link from "next/link";
 import Axios from "axios";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { useAuthState, useAuthDispatch } from "../context/auth";
 import { Sub } from "../types";
@@ -11,6 +11,7 @@ import Image from "next/image";
 const Navbar: React.FC = () => {
   const [name, setName] = useState("");
   const [subs, setSubs] = useState<Sub[]>([]);
+  const [timer, setTimer] = useState(null);
 
   const { authenticated, loading } = useAuthState();
   const dispatch = useAuthDispatch();
@@ -24,16 +25,28 @@ const Navbar: React.FC = () => {
       .catch((err) => console.log(err));
   };
 
-  const searchSubs = async (subName: string) => {
-    setName(subName);
-
-    try {
-      const { data } = await Axios.get(`/subs/search/${subName}`);
-      setSubs(data);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
+  useEffect(() => {
+    if (name.trim() === "") {
+      setSubs([]);
+      return;
     }
+    searchSubs();
+  }, [name]);
+
+  const searchSubs = async () => {
+    clearTimeout(timer);
+
+    setTimer(
+      setTimeout(async () => {
+        try {
+          const { data } = await Axios.get(`/subs/search/${name}`);
+          setSubs(data);
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }, 250)
+    );
   };
 
   return (
@@ -52,14 +65,14 @@ const Navbar: React.FC = () => {
           placeholder="Search"
           className="w-full py-2 pr-3 transition duration-200 bg-transparent outline-none"
           value={name}
-          onChange={(e) => searchSubs(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <div
           className="absolute left-0 right-0 bg-white"
           style={{ top: "100%" }}
         >
           {subs?.map((sub) => (
-            <div className="flex items-center px-4 py-3 rounded-lg shadow-xl cursor-pointer hover:bg-gray-200">
+            <div className="flex items-center px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex overflow-hidden">
                 <Image
                   src={sub.imageUrl}
@@ -69,7 +82,7 @@ const Navbar: React.FC = () => {
                   width={40}
                 />
                 <div className="flex flex-col ml-4 text-sm">
-                  <div className="font-medium">{sub.name}</div>
+                  <div className="font-semibold text-green">{sub.name}</div>
                   <p className="text-gray-600">{sub.title}</p>
                 </div>
               </div>

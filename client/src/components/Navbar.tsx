@@ -7,6 +7,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useAuthState, useAuthDispatch } from "../context/auth";
 import { Sub } from "../types";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Navbar: React.FC = () => {
   const [name, setName] = useState("");
@@ -15,6 +16,8 @@ const Navbar: React.FC = () => {
 
   const { authenticated, loading } = useAuthState();
   const dispatch = useAuthDispatch();
+
+  const router = useRouter();
 
   const logout = () => {
     Axios.get("/auth/logout")
@@ -49,6 +52,11 @@ const Navbar: React.FC = () => {
     );
   };
 
+  const goToSub = (subName: string) => {
+    router.push(`/fa/${subName}`);
+    setName("");
+  };
+
   return (
     <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-between w-full px-8 bg-white border-b h-8v border-primary">
       <Link href="/">
@@ -72,7 +80,10 @@ const Navbar: React.FC = () => {
           style={{ top: "100%" }}
         >
           {subs?.map((sub) => (
-            <div className="flex items-center px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div
+              className="flex items-center px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-200"
+              onClick={() => goToSub(sub.name)}
+            >
               <div className="flex overflow-hidden">
                 <Image
                   src={sub.imageUrl}

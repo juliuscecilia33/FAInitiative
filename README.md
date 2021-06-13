@@ -14,5 +14,7 @@
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/mockups/Page2.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page3.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/mockups/Page%207v2.png)
+![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/mockups/Page8.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page4.png)
 ![FAInitiative](https://github.com/juliuscecilia33/FAInitiative/blob/main/client/public/images/Page5.png)
+

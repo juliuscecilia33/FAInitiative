@@ -68,7 +68,7 @@ export default function submit() {
           </p>
         </div>
         <div className="flex flex-col items-center w-full pb-10 mx-auto rounded-4xl mb-14">
-          <div className="flex flex-col items-center w-8/12 bg-white shadow-2xl h-52 rounded-tl-4xl rounded-tr-4xl rounded-bl-3.5xl rounded-br-3.5xl my-14">
+          <div className="flex flex-col items-center w-7/12 bg-white shadow-2xl h-52 rounded-tl-4xl rounded-tr-4xl rounded-bl-3.5xl rounded-br-3.5xl my-14">
             <div className="flex items-center justify-between w-full px-10 bg-secondary h-2/7 rounded-tl-4xl rounded-tr-4xl">
               <div className="flex items-center justify-center">
                 {authenticated && (

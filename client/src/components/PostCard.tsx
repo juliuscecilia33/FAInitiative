@@ -116,11 +116,6 @@ export default function PostCard({
               backgroundPosition: "center",
             }}
           ></div>
-          {/* <img
-            className="w-6 h-auto mr-2 cursor-pointer"
-            src="/images/companylogo.png"
-            alt="company logo"
-          /> */}
         </Link>
         <Link href={`/fa/${subName}`}>
           <a className="text-white transition hover:underline">/fa/{subName}</a>
